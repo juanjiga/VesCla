@@ -11,4 +11,5 @@ public class Clave {
     private String nombre;
     private String usuario;
     private String password;
+    private int imagne;
 }
