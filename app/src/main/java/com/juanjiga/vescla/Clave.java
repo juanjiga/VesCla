@@ -8,6 +8,12 @@ public class Clave {
     private String usuario;
     private String password;
     private int imagen;
+
+    public Clave(int id, String usuario, String password) {
+        this.id = id;
+        this.usuario = usuario;
+        this.password = password;
+    }
 }
 
 //pues hola desde github
