@@ -1,5 +1,7 @@
 package com.juanjiga.vescla;
 
+//hola desde Taller
+
 public class Clave {
     private int id;
     private String nombre;
