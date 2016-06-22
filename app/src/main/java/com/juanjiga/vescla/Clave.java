@@ -1,8 +1,5 @@
 package com.juanjiga.vescla;
 
-//hola desde Taller
-//hola de nuevo desde github
-
 public class Clave {
     private int id;
     private String nombre;
@@ -17,5 +14,3 @@ public class Clave {
     }
 }
 
-//pues hola desde github
-//hola hola desde casa
