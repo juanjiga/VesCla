@@ -1,5 +1,7 @@
 package com.juanjiga.vescla;
 
+// Clase "POJO"
+
 public class Clave {
     private int id;
     private String nombre;
