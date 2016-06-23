@@ -1,6 +1,6 @@
 package com.juanjiga.vescla;
 
-// Clase "POJO"
+// Clase "POJO" buenos dias
 
 public class Clave {
     private int id;
