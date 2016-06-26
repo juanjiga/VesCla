@@ -1,5 +1,7 @@
 package com.juanjiga.vescla;
 
+// Basado en Codigo Alonso
+
 public class Constantes {
 
     //Nombre de la base de datos y versión
