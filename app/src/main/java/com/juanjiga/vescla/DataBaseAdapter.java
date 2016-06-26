@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DataBaseAdapter {
 
         //nombre y versión de la base de datos
-        public static final String DB_NAME = "base-dat.db";
+        public static final String DB_NAME = "vescla.db";
         public static final int DB_VERSION = 1;
 
         //nombre de la tabla
