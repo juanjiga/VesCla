@@ -91,8 +91,20 @@ public class DataBaseAdapter {
             }
             return cursor;
         }
+        //UPDATE
+        public void updateClave(Clave clave) {
+            ContentValues values = new ContentValues();
+            values.put(COL_USUARIO, clave.getUsuario());
+            values.put(COL_PASSWORD, clave.getPassword());
+            db.update(TABLA_CLAVES, values, COL_ID + "=?", new String[]{String.valueOf(clave.getId())});
+        }
+        //DELETE
+        public void deleteClaveById(int id) {
+            db.delete(TABLA_CLAVES, COL_ID + "=?", new String[]{String.valueOf(id)});
 
-
+        public void borraTodo(){
+        db.delete(TABLA_CLAVES, null, null);
+        }
 
         //clase interna Helper
         private static class DataBaseHelper extends SQLiteOpenHelper {
