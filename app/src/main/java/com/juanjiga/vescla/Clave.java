@@ -1,6 +1,6 @@
 package com.juanjiga.vescla;
 
-// Clase "POJO" buenos dias
+// Clase "POJO" Plan O.... Java Object
 
 public class Clave {
     private int id;

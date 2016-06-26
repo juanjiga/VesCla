@@ -1,5 +1,7 @@
 package com.juanjiga.vescla;
 
+//basado en Jesús Conde
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -81,8 +83,18 @@ public class DataBaseAdapter {
                     cursor.getString(INDEX_USUARIO),
                     cursor.getString(INDEX_PASSWORD));
         }
+        public Cursor leertodoClave() {
+            Cursor cursor = db.query(TABLA_CLAVES, new String[]{COL_ID,
+                                     COL_USUARIO, COL_PASSWORD}, null, null, null, null, null);
+            if (cursor != null) {
+                cursor.moveToFirst();
+            }
+            return cursor;
+        }
 
 
+
+        //clase interna Helper
         private static class DataBaseHelper extends SQLiteOpenHelper {
             DataBaseHelper(Context context){
                 super(context, DB_NAME, null, DB_VERSION);
