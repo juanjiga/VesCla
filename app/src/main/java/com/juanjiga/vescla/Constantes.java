@@ -24,8 +24,6 @@ public class Constantes {
                     USUARIO   + " TEXT," +
                     PASSWORD   + " TEXT);" ;
 
-
-
-
+    //Otras tablas si las hubiera...
 
 }
