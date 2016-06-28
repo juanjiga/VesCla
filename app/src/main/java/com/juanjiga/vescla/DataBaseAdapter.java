@@ -1,5 +1,8 @@
 package com.juanjiga.vescla;
 
+// basado en Jesús Conde, equivalente
+// a las clases DataBaseClaves + Constantes
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;

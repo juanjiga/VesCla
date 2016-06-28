@@ -17,7 +17,7 @@ public class Constantes {
     public static final String PASSWORD = "password";
 
     //Sentencia SQL para la creación de la tabla
-    public static final String TABLA_CLIENTES_SQL =
+    public static final String DATABASE_CREATE =
             "CREATE TABLE  " + TABLA_CLAVES + "(" +
                     ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     NOMBRE + " TEXT NOT NULL," +
