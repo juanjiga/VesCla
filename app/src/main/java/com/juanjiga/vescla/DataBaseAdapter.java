@@ -21,13 +21,15 @@ public class DataBaseAdapter {
 
     //nombres de los campos (columnas)
     public static final String COL_ID = "id";
+    public static final String COL_NOMBRE = "nombre";
     public static final String COL_USUARIO = "usuario";
     public static final String COL_PASSWORD = "password";
 
     //indices
     public static final int INDEX_ID = 0;
-    public static final int INDEX_USUARIO = INDEX_ID + 1;
-    public static final int INDEX_PASSWORD = INDEX_ID + 2;
+    public static final int INDEX_NOMBRE = INDEX_ID +1;
+    public static final int INDEX_USUARIO = INDEX_ID + 2;
+    public static final int INDEX_PASSWORD = INDEX_ID + 3;
 
     private DataBaseHelper dataBaseHelper;
     private SQLiteDatabase db;
@@ -60,16 +62,17 @@ public class DataBaseAdapter {
 
     //metodos "CRUD"
     //CREATE
-    public void crearClave(String usuario, String password) {
+    public void crearClave(String nombre, String usuario, String password) {
         ContentValues values = new ContentValues();
+        values.put(COL_NOMBRE, nombre);
         values.put(COL_USUARIO, usuario);
         values.put(COL_PASSWORD, password);
         db.insert(TABLA_CLAVES, null, values);
     }
-
     //sobrecarga del metodo
     public long crearClave(Clave clave) {
         ContentValues values = new ContentValues();
+        values.put(COL_NOMBRE, clave.getNombre());
         values.put(COL_USUARIO, clave.getUsuario());
         values.put(COL_PASSWORD, clave.getPassword());
         return db.insert(TABLA_CLAVES, null, values);
@@ -81,9 +84,8 @@ public class DataBaseAdapter {
                 COL_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
-        return new Clave(cursor.getInt(INDEX_ID),
-                cursor.getString(INDEX_USUARIO),
-                cursor.getString(INDEX_PASSWORD));
+        return new Clave(cursor.getInt(INDEX_ID), cursor.getString(INDEX_NOMBRE),
+                cursor.getString(INDEX_USUARIO), cursor.getString(INDEX_PASSWORD));
     }
 
     public Cursor leertodoClave() {
@@ -97,6 +99,7 @@ public class DataBaseAdapter {
     //UPDATE
     public void updateClave(Clave clave) {
         ContentValues values = new ContentValues();
+        values.put(COL_NOMBRE, clave.getNombre());
         values.put(COL_USUARIO, clave.getUsuario());
         values.put(COL_PASSWORD, clave.getPassword());
         db.update(TABLA_CLAVES, values, COL_ID + "=?", new String[]{String.valueOf(clave.getId())});

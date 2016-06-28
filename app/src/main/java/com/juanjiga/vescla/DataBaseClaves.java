@@ -27,37 +27,24 @@ public class DataBaseClaves {
         if (db != null)
             db.close();
     }
-    //metodo para no repetir...
+    //metodo para no repetir Values
     private ContentValues clavesMapper(Clave clave) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(Constantes.USUARIO, clave.getUsuario());
         contentValues.put(Constantes.PASSWORD, clave.getPassword());
         return contentValues;
     }
-    //CRUD
-    //insertar
+    //metodos  "CRUD"
+
+    //CREATE   insertar
     public long insertarClave(Clave clave) {
         this.openWriteableDB();
         long rowID = db.insert(Constantes.TABLA_CLAVES, null, clavesMapper(clave));
         this.closeDB();
         return rowID;
     }
-    //actualizar modificar
-    public void updateClave(Clave clave) {
-        this.openWriteableDB();
-        String where = Constantes.ID+ "= ?";
-        db.update(Constantes.TABLA_CLAVES, clavesMapper(clave),
-                where, new String[]{String.valueOf(clave.getId())});
-        db.close();
-    }
-    //borrar
-    public void deleteClave(int id) {
-        this.openWriteableDB();
-        String where = Constantes.ID + "= ?";
-        db.delete(Constantes.TABLA_CLAVES, where, new String[]{String.valueOf(id)});
-        this.closeDB();
-    }
-    //buscar leer
+
+    //READ    buscar  leer
     public Clave buscarClave(String nombre) {
         Clave clave = new Clave();
         this.openReadableDB();
@@ -77,6 +64,24 @@ public class DataBaseClaves {
         this.closeDB();
         return clave;
     }
+
+    //UPDATE   actualizar  modificar
+    public void updateClave(Clave clave) {
+        this.openWriteableDB();
+        String where = Constantes.ID+ "= ?";
+        db.update(Constantes.TABLA_CLAVES, clavesMapper(clave),
+                where, new String[]{String.valueOf(clave.getId())});
+        db.close();
+    }
+
+    //DELETE   borrar
+    public void deleteClave(int id) {
+        this.openWriteableDB();
+        String where = Constantes.ID + "= ?";
+        db.delete(Constantes.TABLA_CLAVES, where, new String[]{String.valueOf(id)});
+        this.closeDB();
+    }
+
     //clase interna Helper
     private static class DataBaseHelper extends SQLiteOpenHelper {
         DataBaseHelper(Context context) {
