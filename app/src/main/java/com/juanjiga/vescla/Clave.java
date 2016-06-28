@@ -9,8 +9,11 @@ public class Clave {
     private String password;
     private int imagen;
 
-    public Clave(int id, String usuario, String password) {
+    public Clave(){}
+
+    public Clave(int id, String nombre, String usuario, String password) {
         this.id = id;
+        this.nombre = nombre;
         this.usuario = usuario;
         this.password = password;
     }
@@ -21,6 +24,14 @@ public class Clave {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getUsuario() {

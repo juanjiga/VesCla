@@ -5,6 +5,7 @@ package com.juanjiga.vescla;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -41,7 +42,7 @@ public class DataBaseClaves {
         this.closeDB();
         return rowID;
     }
-    //actualizar
+    //actualizar modificar
     public void updateClave(Clave clave) {
         this.openWriteableDB();
         String where = Constantes.ID+ "= ?";
@@ -49,12 +50,32 @@ public class DataBaseClaves {
                 where, new String[]{String.valueOf(clave.getId())});
         db.close();
     }
-    //  BORRAR
+    //borrar
     public void deleteClave(int id) {
         this.openWriteableDB();
         String where = Constantes.ID + "= ?";
         db.delete(Constantes.TABLA_CLAVES, where, new String[]{String.valueOf(id)});
         this.closeDB();
+    }
+    //buscar leer
+    public Clave buscarClave(String nombre) {
+        Clave clave = new Clave();
+        this.openReadableDB();
+        String where = Constantes.NOMBRE + "= ?";
+        String[] whereArgs = {nombre};
+        Cursor cursor = db.query(Constantes.TABLA_CLAVES, null,
+                where, whereArgs, null, null, null);
+
+        if (cursor != null || cursor.getCount() <= 0) {
+            cursor.moveToFirst();
+            clave.setId(cursor.getInt(0));
+            clave.setNombre(cursor.getString(1));
+            clave.setUsuario(cursor.getString(2));
+            clave.setPassword(cursor.getString(3));
+            cursor.close();
+        }
+        this.closeDB();
+        return clave;
     }
     //clase interna Helper
     private static class DataBaseHelper extends SQLiteOpenHelper {

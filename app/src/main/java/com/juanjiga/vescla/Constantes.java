@@ -12,6 +12,7 @@ public class Constantes {
     public static final String TABLA_CLAVES = "claves";
 
     public static final String ID = "id";
+    public static final String NOMBRE = "nombre";
     public static final String USUARIO = "usuario";
     public static final String PASSWORD = "password";
 
@@ -19,7 +20,8 @@ public class Constantes {
     public static final String DATABASE_CREATE =
             "CREATE TABLE  " + TABLA_CLAVES + "(" +
                     ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    USUARIO + " TEXT NOT NULL," +
+                    NOMBRE + "TEXT NOT NULL," +
+                    USUARIO + " TEXT," +
                     PASSWORD   + " TEXT);" ;
 
     //Otras tablas si las hubiera...
