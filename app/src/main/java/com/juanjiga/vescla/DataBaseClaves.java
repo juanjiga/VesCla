@@ -3,6 +3,7 @@ package com.juanjiga.vescla;
 // basado en Codigo Alonso, equivalente
 // a la clase DataBaseAdapter
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -30,6 +31,16 @@ public class DataBaseClaves {
         }
     }
 
+    //metodo para no repetir...
+    private ContentValues clienteMapperContentValues(Clave clave) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Constantes.USUARIO, clave.getUsuario());
+        contentValues.put(Constantes.PASSWORD, clave.getPassword())
+        return contentValues;
+    }
+
+    //CRUD
+
 
     //clase interna Helper
     private static class DataBaseHelper extends SQLiteOpenHelper {
@@ -49,4 +60,7 @@ public class DataBaseClaves {
         }
 
     }
+
+
+
 }
