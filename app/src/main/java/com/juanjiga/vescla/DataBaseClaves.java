@@ -11,6 +11,18 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DataBaseClaves {
 
+    //Nombre de la base de datos y versión
+    public static final String DB_NAME = "vescladb.db";
+    public static final int DB_VERSION = 1;
+
+    //Nombre de la tabla, "claves" y nombres de los campos (columnas)
+    public static final String TABLA_CLAVES = "claves";
+
+    public static final String ID = "id";
+    public static final String NOMBRE = "nombre";
+    //public static final String USUARIO = "usuario";
+    public static final String PASSWORD = "password";
+
     private DataBaseHelper dataBaseHelper;
     private SQLiteDatabase db;
 
@@ -30,8 +42,9 @@ public class DataBaseClaves {
     //metodo para no repetir Values
     private ContentValues clavesMapper(Clave clave) {
         ContentValues contentValues = new ContentValues();
+        // (sin usar la clase "Constantes"   contentValues.put(USUARIO, clave.getUsuario());
         contentValues.put(Constantes.USUARIO, clave.getUsuario());
-        contentValues.put(Constantes.PASSWORD, clave.getPassword());
+        contentValues.put(PASSWORD, clave.getPassword());
         return contentValues;
     }
     //metodos  "CRUD"
@@ -69,7 +82,7 @@ public class DataBaseClaves {
     public void updateClave(Clave clave) {
         this.openWriteableDB();
         String where = Constantes.ID+ "= ?";
-        db.update(Constantes.TABLA_CLAVES, clavesMapper(clave),
+        db.update(TABLA_CLAVES, clavesMapper(clave),
                 where, new String[]{String.valueOf(clave.getId())});
         db.close();
     }
@@ -77,8 +90,7 @@ public class DataBaseClaves {
     //DELETE   borrar
     public void deleteClave(int id) {
         this.openWriteableDB();
-        String where = Constantes.ID + "= ?";
-        db.delete(Constantes.TABLA_CLAVES, where, new String[]{String.valueOf(id)});
+        db.delete(TABLA_CLAVES, ID + "=?", new String[]{String.valueOf(id)});
         this.closeDB();
     }
 
