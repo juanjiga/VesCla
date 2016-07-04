@@ -42,9 +42,9 @@ public class DataBaseClaves {
 
     //CREATE   insertar
     public long insertarClave(Clave clave) {
-        this.openWriteableDB();
+        this.abrirpaescribirDB();
         long rowID = db.insert(Constantes.TABLA_CLAVES, null, clavesMapper(clave));
-        this.closeDB();
+        this.cerrarDB();
         return rowID;
     }
 
