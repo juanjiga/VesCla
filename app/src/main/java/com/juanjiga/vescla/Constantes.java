@@ -1,6 +1,7 @@
 package com.juanjiga.vescla;
 
 // basado en Codigo Alonso
+//xxx
 
 public class Constantes {
 
