@@ -9,8 +9,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.util.ArrayList;
-
 public class DataBaseClaves {
 
     //Nombre de la base de datos y versión
@@ -59,29 +57,7 @@ public class DataBaseClaves {
         return rowID;
     }
 
-    //READ      leer
-    public ArrayList listaClaves() {
-        ArrayList lista = new ArrayList<>();
-        this.openReadableDB();
-        String[] campos = new String[]{Constantes.ID, Constantes.NOMBRE,
-                Constantes.USUARIO, Constantes.PASSWORD};
-        Cursor cursor = db.query(Constantes.TABLA_CLAVES, campos, null, null, null, null, null);
-        try {
-            while (cursor.moveToNext()) {
-                Clave clave = new Clave();
-                clave.setId(cursor.getInt(0));
-                clave.setNombre(cursor.getString(1));
-                clave.setUsuario(cursor.getString(2));
-                clave.setPassword(cursor.getString(3));
-                lista.add(clave);
-            }
-        } finally {
-            cursor.close();
-        }
-        this.closeDB();
-        return lista;
-    }
-    // READ     buscar
+    //READ    buscar  leer
     public Clave buscarClave(String nombre) {
         Clave clave = new Clave();
         this.openReadableDB();
@@ -133,4 +109,7 @@ public class DataBaseClaves {
             onCreate(db);
         }
     }
+
+
+
 }
