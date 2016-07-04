@@ -17,13 +17,21 @@ public class DataBaseControl {
     public static final String DB_NAME = "vescladb.db";
     public static final int DB_VERSION = 1;
 
-    //Nombre de la tabla, "claves" y nombres de los campos (columnas)
+    //Nombre de la tabla "claves" y nombres de los campos (columnas)
     public static final String TABLA_CLAVES = "claves";
 
     public static final String ID = "id";
     public static final String NOMBRE = "nombre";
     public static final String USUARIO = "usuario";
     public static final String PASSWORD = "password";
+
+    //Setencia para crear la base de datos
+    public static final String DATABASE_CREATE =
+            "CREATE TABLE  " + TABLA_CLAVES + "(" +
+                    ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    NOMBRE + "TEXT NOT NULL," +
+                    USUARIO + " TEXT," +
+                    PASSWORD   + " TEXT);" ;
 
     private DataBaseHelper dataBaseHelper;
     private SQLiteDatabase db;
@@ -42,28 +50,28 @@ public class DataBaseControl {
                 db.close();
         }
     //metodo para no repetir Values
-    private ContentValues clavesMapper(Clave clave) {
+    private ContentValues valores(Clave clave) {
             ContentValues contentValues = new ContentValues();
             contentValues.put(USUARIO, clave.getUsuario());
             contentValues.put(PASSWORD, clave.getPassword());
             return contentValues;
     }
 
-        //metodos  "CRUD"
+    //metodos  "CRUD"
 
-        //CREATE   insertar
-        public long insertarClave(Clave clave) {
+    //CREATE   insertar
+    public long insertarClave(Clave clave) {
             this.openWriteableDB();
-            long rowID = db.insert(TABLA_CLAVES, null, clavesMapper(clave));
+            long rowID = db.insert(TABLA_CLAVES, null, valores(clave));
             this.closeDB();
             return rowID;
         }
 
-        //READ      leer
-        public ArrayList listaClaves() {
+    //READ      leer
+    public ArrayList listaClaves() {
             ArrayList lista = new ArrayList<>();
             this.openReadableDB();
-            Cursor cursor = db.query(TABLA_CLAVES, null, NOMBRE + "= ?",
+            Cursor cursor = db.query(TABLA_CLAVES, null, NOMBRE + "=?",
                     new String[]{ID, NOMBRE, USUARIO, PASSWORD}, null, null, null, null);
             try {
                 while (cursor.moveToNext()) {
@@ -80,11 +88,10 @@ public class DataBaseControl {
             this.closeDB();
             return lista;
         }
-        // READ     buscar
-        public Clave buscarClave(String nombre) {
+    // READ     buscar
+    public Clave buscarClave(String nombre) {
             Clave clave = new Clave();
             this.openReadableDB();
-            String[] whereArgs = {nombre};
             Cursor cursor = db.query(TABLA_CLAVES, null, "=?", new String[]{nombre},
                     null, null, null);
 
@@ -100,35 +107,33 @@ public class DataBaseControl {
             return clave;
         }
 
-        //UPDATE   actualizar  modificar
+    //UPDATE   actualizar  modificar
         public void updateClave(Clave clave) {
             this.openWriteableDB();
-            String where = Constantes.ID+ "= ?";
-            db.update(Constantes.TABLA_CLAVES, clavesMapper(clave),
-                    where, new String[]{String.valueOf(clave.getId())});
+            db.update(TABLA_CLAVES, valores(clave),
+                    ID + "=?", new String[]{String.valueOf(clave.getId())});
             db.close();
         }
 
-        //DELETE   borrar
+    //DELETE   borrar
         public void deleteClave(int id) {
             this.openWriteableDB();
-            String where = Constantes.ID + "= ?";
-            db.delete(Constantes.TABLA_CLAVES, where, new String[]{String.valueOf(id)});
+            db.delete(TABLA_CLAVES, ID + "=?", new String[]{String.valueOf(id)});
             this.closeDB();
         }
 
-        //clase interna Helper
-        private static class DataBaseHelper extends SQLiteOpenHelper {
+    //clase interna Helper
+    private static class DataBaseHelper extends SQLiteOpenHelper {
             DataBaseHelper(Context context) {
-                super(context, Constantes.DB_NAME, null, Constantes.DB_VERSION);
+                super(context, DB_NAME, null, DB_VERSION);
             }
             @Override
             public void onCreate(SQLiteDatabase db) {
-                db.execSQL(Constantes.DATABASE_CREATE);
+                db.execSQL(DATABASE_CREATE);
             }
             @Override
             public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-                db.execSQL("DROP TABLE IF EXISTS " + Constantes.TABLA_CLAVES);
+                db.execSQL("DROP TABLE IF EXISTS " + TABLA_CLAVES);
                 onCreate(db);
             }
         }
