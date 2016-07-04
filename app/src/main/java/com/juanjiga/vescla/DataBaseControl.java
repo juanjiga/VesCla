@@ -36,10 +36,12 @@ public class DataBaseControl {
     private DataBaseHelper dataBaseHelper;
     private SQLiteDatabase db;
 
+    //Constructor
     public DataBaseControl(Context context) {
             dataBaseHelper = new DataBaseHelper(context);
         }
-        private void openReadableDB() {
+    //metodos para abrir y cerrar la base de datos
+    private void openReadableDB() {
             db = dataBaseHelper.getReadableDatabase();
         }
         private void openWriteableDB() {
