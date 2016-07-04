@@ -1,6 +1,7 @@
 package com.juanjiga.vescla;
 
 // basado en Codigo Alonso
+// para funcionar junto a DataBaseClaves
 
 public class Constantes {
 
