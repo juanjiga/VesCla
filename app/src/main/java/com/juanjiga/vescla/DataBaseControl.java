@@ -41,13 +41,13 @@ public class DataBaseControl {
             dataBaseHelper = new DataBaseHelper(context);
         }
     //metodos para abrir y cerrar la base de datos
-    private void openReadableDB() {
+    private void abrirpaleerDB() {
             db = dataBaseHelper.getReadableDatabase();
         }
-        private void openWriteableDB() {
+    private void abrirpaescribirDB() {
             db = dataBaseHelper.getWritableDatabase();
         }
-        private void closeDB() {
+    private void cerrarDB() {
             if (db != null)
                 db.close();
         }
@@ -63,16 +63,16 @@ public class DataBaseControl {
 
     //CREATE   insertar
     public long insertarClave(Clave clave) {
-            this.openWriteableDB();
+            this.abrirpaescribirDB();
             long rowID = db.insert(TABLA_CLAVES, null, valores(clave));
-            this.closeDB();
+            this.cerrarDB();
             return rowID;
         }
 
     //READ      leer
     public ArrayList listaClaves() {
             ArrayList lista = new ArrayList<>();
-            this.openReadableDB();
+            this.abrirpaleerDB();
             Cursor cursor = db.query(TABLA_CLAVES, null, NOMBRE + "=?",
                     new String[]{ID, NOMBRE, USUARIO, PASSWORD}, null, null, null, null);
             try {
@@ -87,13 +87,13 @@ public class DataBaseControl {
             } finally {
                 cursor.close();
             }
-            this.closeDB();
+            this.cerrarDB();
             return lista;
         }
     // READ     buscar
     public Clave buscarClave(String nombre) {
             Clave clave = new Clave();
-            this.openReadableDB();
+            this.abrirpaleerDB();
             Cursor cursor = db.query(TABLA_CLAVES, null, "=?", new String[]{nombre},
                     null, null, null);
 
@@ -105,13 +105,13 @@ public class DataBaseControl {
                 clave.setPassword(cursor.getString(3));
                 cursor.close();
             }
-            this.closeDB();
+            this.cerrarDB();
             return clave;
         }
 
     //UPDATE   actualizar  modificar
         public void updateClave(Clave clave) {
-            this.openWriteableDB();
+            this.abrirpaescribirDB();
             db.update(TABLA_CLAVES, valores(clave),
                     ID + "=?", new String[]{String.valueOf(clave.getId())});
             db.close();
@@ -119,9 +119,9 @@ public class DataBaseControl {
 
     //DELETE   borrar
         public void deleteClave(int id) {
-            this.openWriteableDB();
+            this.abrirpaescribirDB();
             db.delete(TABLA_CLAVES, ID + "=?", new String[]{String.valueOf(id)});
-            this.closeDB();
+            this.cerrarDB();
         }
 
     //clase interna Helper
