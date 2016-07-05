@@ -32,7 +32,7 @@ public class DataBaseClaves {
     }
 
     //metodo para no repetir Values  ---->>>>>>> valoresssss
-    private ContentValues clavesMapper(Clave clave) {
+    private ContentValues valores(Clave clave) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(Constantes.USUARIO, clave.getUsuario());
         contentValues.put(Constantes.PASSWORD, clave.getPassword());
@@ -43,7 +43,7 @@ public class DataBaseClaves {
     //CREATE   insertar
     public long insertarClave(Clave clave) {
         this.abrirpaescribirDB();
-        long rowID = db.insert(Constantes.TABLA_CLAVES, null, clavesMapper(clave));
+        long rowID = db.insert(Constantes.TABLA_CLAVES, null, valores(clave));
         this.cerrarDB();
         return rowID;
     }
@@ -51,7 +51,7 @@ public class DataBaseClaves {
     //READ     buscar  leer
     public Clave buscarClave(String nombre) {
         Clave clave = new Clave();
-        this.openReadableDB();
+        this.abrirpaleerDB();
         String where = Constantes.NOMBRE + "= ?";
         String[] whereArgs = {nombre};
         Cursor cursor = db.query(Constantes.TABLA_CLAVES, null,
@@ -65,25 +65,25 @@ public class DataBaseClaves {
             clave.setPassword(cursor.getString(3));
             cursor.close();
         }
-        this.closeDB();
+        this.cerrarDB();
         return clave;
     }
 
     //UPDATE   actualizar  modificar
     public void updateClave(Clave clave) {
-        this.openWriteableDB();
+        this.abrirpaescribirDB();
         String where = Constantes.ID+ "= ?";
-        db.update(Constantes.TABLA_CLAVES, clavesMapper(clave),
+        db.update(Constantes.TABLA_CLAVES, valores(clave),
                 where, new String[]{String.valueOf(clave.getId())});
         db.close();
     }
 
     //DELETE   borrar
     public void deleteClave(int id) {
-        this.openWriteableDB();
+        this.abrirpaescribirDB();
         String where = Constantes.ID+ "= ?";
         db.delete(Constantes.TABLA_CLAVES, where, new String[]{String.valueOf(id)});
-        this.closeDB();
+        this.cerrarDB();
     }
 
     //clase interna Helper
