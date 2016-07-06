@@ -20,8 +20,8 @@ public class DataBaseAdapter {
     public static final String TABLA_CLAVES = "claves";
 
     //nombres de los campos (columnas)
-    public static final String COL_ID = "id";
-    public static final String COL_NOMBRE = "nombre";
+    public static final String ID = "id";
+    public static final String NOMBRE = "nombre";
     public static final String COL_USUARIO = "usuario";
     public static final String COL_PASSWORD = "password";
 
@@ -38,7 +38,7 @@ public class DataBaseAdapter {
 
     //sentencia SQL para crear la base de datos
     private static final String DATABASE_CREATE = "CREATE TABLE if not exist " +
-            " ( " + COL_ID + " INTEGER PRIMARY KEY autoincrement, " +
+            " ( " + ID + " INTEGER PRIMARY KEY autoincrement, " +
             COL_USUARIO + " TEXT, " +
             COL_PASSWORD + " TEXT );";
 
@@ -64,7 +64,7 @@ public class DataBaseAdapter {
     //CREATE
     public void crearClave(String nombre, String usuario, String password) {
         ContentValues values = new ContentValues();
-        values.put(COL_NOMBRE, nombre);
+        values.put(NOMBRE, nombre);
         values.put(COL_USUARIO, usuario);
         values.put(COL_PASSWORD, password);
         db.insert(TABLA_CLAVES, null, values);
@@ -72,7 +72,7 @@ public class DataBaseAdapter {
     //sobrecarga del metodo
     public long crearClave(Clave clave) {
         ContentValues values = new ContentValues();
-        values.put(COL_NOMBRE, clave.getNombre());
+        values.put(NOMBRE, clave.getNombre());
         values.put(COL_USUARIO, clave.getUsuario());
         values.put(COL_PASSWORD, clave.getPassword());
         return db.insert(TABLA_CLAVES, null, values);
@@ -80,8 +80,8 @@ public class DataBaseAdapter {
 
     //READ
     public Clave leerClave(int id) {
-        Cursor cursor = db.query(TABLA_CLAVES, new String[]{COL_ID, COL_USUARIO, COL_PASSWORD},
-                COL_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
+        Cursor cursor = db.query(TABLA_CLAVES, new String[]{ID, COL_USUARIO, COL_PASSWORD},
+                ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
         return new Clave(cursor.getInt(INDEX_ID), cursor.getString(INDEX_NOMBRE),
@@ -89,7 +89,7 @@ public class DataBaseAdapter {
     }
 
     public Cursor leertodoClave() {
-        Cursor cursor = db.query(TABLA_CLAVES, new String[]{COL_ID,
+        Cursor cursor = db.query(TABLA_CLAVES, new String[]{ID,
                 COL_USUARIO, COL_PASSWORD}, null, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
@@ -99,15 +99,15 @@ public class DataBaseAdapter {
     //UPDATE
     public void updateClave(Clave clave) {
         ContentValues values = new ContentValues();
-        values.put(COL_NOMBRE, clave.getNombre());
+        values.put(NOMBRE, clave.getNombre());
         values.put(COL_USUARIO, clave.getUsuario());
         values.put(COL_PASSWORD, clave.getPassword());
-        db.update(TABLA_CLAVES, values, COL_ID + "=?", new String[]{String.valueOf(clave.getId())});
+        db.update(TABLA_CLAVES, values, ID + "=?", new String[]{String.valueOf(clave.getId())});
     }
 
     //DELETE
     public void deleteClaveById(int id) {
-        db.delete(TABLA_CLAVES, COL_ID + "=?", new String[]{String.valueOf(id)});
+        db.delete(TABLA_CLAVES, ID + "=?", new String[]{String.valueOf(id)});
     }
 
     public void borraTodo() {
