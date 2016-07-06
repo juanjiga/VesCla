@@ -11,6 +11,12 @@ public class Clave {
 
     public Clave(){}
 
+    public Clave(String nombre, String usuario, String password) {
+        this.nombre = nombre;
+        this.usuario = usuario;
+        this.password = password;
+    }
+
     public Clave(int id, String nombre, String usuario, String password) {
         this.id = id;
         this.nombre = nombre;

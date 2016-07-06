@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
         database = new DataBaseControl(this);
         lista = (ListView) findViewById(R.id.lista_listView);
 
+        Clave primodato = new Clave("Juan", "juanjiga", "luci1314");
+
         String[] from = new String[]{database.NOMBRE, database.USUARIO, database.PASSWORD};
         int[] to = new int[]{R.id.Nombre_textView, R.id.Usuario_textView,R.id.Password_textView};
 
