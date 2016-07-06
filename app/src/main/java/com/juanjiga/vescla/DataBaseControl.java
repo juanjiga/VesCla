@@ -124,6 +124,12 @@ public class DataBaseControl {
             this.cerrarDB();
         }
 
+    //Cursor
+    public Cursor cargarCursorClaves(){
+        String[] columnas = new String[]{ID,NOMBRE,USUARIO,PASSWORD};
+        return db.query(TABLA_CLAVES, columnas,null, null, null, null, null);
+    }
+
     //clase interna Helper
     private static class DataBaseHelper extends SQLiteOpenHelper {
             DataBaseHelper(Context context) {
