@@ -68,7 +68,14 @@ public class DataBaseControl {
             this.cerrarDB();
             return rowID;
         }
-
+    public void insertar(String nombre, String usuario, String password){
+            this.abrirpaescribirDB();
+        ContentValues values = new ContentValues();
+        values.put(NOMBRE, nombre);
+        values.put(USUARIO, usuario);
+        values.put(PASSWORD, password);
+        db.insert(TABLA_CLAVES, null, values);
+    }
     //READ      leer
     public ArrayList listaClaves() {
             ArrayList lista = new ArrayList<>();
