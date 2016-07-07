@@ -28,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
         lista = (ListView) findViewById(R.id.lista_listView);
 
         Clave primodato = new Clave("Juan", "juanjiga", "luci1314");
+        Clave dos = new Clave("Monica", "moessa", "chusss1971");
+        Clave tres = new Clave("Lucía", "lujies", "chiquichuss");
+        database.insertarClave(primodato);
+        database.insertarClave(dos);
+        database.insertarClave(tres);
 
         String[] from = new String[]{database.NOMBRE, database.USUARIO, database.PASSWORD};
         int[] to = new int[]{R.id.Nombre_textView, R.id.Usuario_textView,R.id.Password_textView};
