@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         database.insertarClave(tres);
         database.insertar("Juan","juanjiga","luci1314");
 
-        String[] from = new String[]{database.NOMBRE, database.USUARIO, database.PASSWORD};
+        String[] from = new String[]{database.C_NOMBRE, database.C_USUARIO, database.C_PASSWORD};
         int[] to = new int[]{R.id.Nombre_textView, R.id.Usuario_textView,R.id.Password_textView};
 
         adapter = new SimpleCursorAdapter(this, R.layout.fila, cursor, from, to,0);
