@@ -29,7 +29,7 @@ public class DataBaseControl {
     public static final String DATABASE_CREATE =
             "CREATE TABLE  " + T_CLAVES + "(" +
                     C_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    C_NOMBRE + "TEXT NOT NULL," +
+                    C_NOMBRE + " TEXT NOT NULL," +
                     C_USUARIO + " TEXT," +
                     C_PASSWORD + " TEXT);" ;
 

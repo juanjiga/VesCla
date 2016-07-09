@@ -21,7 +21,7 @@ public class Constantes {
     public static final String DATABASE_CREATE =
             "CREATE TABLE  " + TABLA_CLAVES + "(" +
                     ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    NOMBRE + "TEXT NOT NULL," +
+                    NOMBRE + " TEXT NOT NULL," +
                     USUARIO + " TEXT," +
                     PASSWORD   + " TEXT);" ;
 
