@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         String[] from = new String[]{database.C_NOMBRE, database.C_USUARIO, database.C_PASSWORD};
         int[] to = new int[]{R.id.Nombre_textView, R.id.Usuario_textView,R.id.Password_textView};
 
+        cursor = database.cargarCursorClaves();
         adapter = new SimpleCursorAdapter(this, R.layout.fila, cursor, from, to,0);
         lista.setAdapter(adapter);
 

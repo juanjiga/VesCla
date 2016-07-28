@@ -38,7 +38,7 @@ public class DataBaseAdapter {
 
     //sentencia SQL para crear la base de datos
     private static final String DATABASE_CREATE = "CREATE TABLE if not exist " +
-            " ( " + ID + " INTEGER PRIMARY KEY autoincrement, " + NOMBRE + "TEXT NOT NULL," +
+            " ( " + ID + " INTEGER PRIMARY KEY autoincrement, " + NOMBRE + " TEXT NOT NULL, " +
             COL_USUARIO + " TEXT, " +
             COL_PASSWORD + " TEXT );";
 
