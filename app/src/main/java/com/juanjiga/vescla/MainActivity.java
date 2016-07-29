@@ -36,7 +36,11 @@ public class MainActivity extends AppCompatActivity {
         database.insertar("Juan", "juanjiga", "luci1314");
         database.insertar("Mónica", "moessa13", "chusss");
         Clave cuatro = new Clave("Lucía Jiménez", "nueva", "holachiquichuss");
+
         database.insertarClave(cuatro);
+        database.insertar("nombre", "usuario", "contraseña");
+
+        database.deleteClave(5);
 
         String[] from = new String[]{database.C_NOMBRE, database.C_USUARIO, database.C_PASSWORD};
         int[] to = new int[]{R.id.Nombre_textView, R.id.Usuario_textView,R.id.Password_textView};
