@@ -4,20 +4,21 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v4.widget.SimpleCursorAdapter;
+//import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
-    DataBaseControl database;
-    Cursor cursor;
-    ListView lista;
-    SimpleCursorAdapter adapter;
+    private DataBaseControl database;
+    private Cursor cursor;
+    private ListView lista;
+    private SimpleCursorAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,17 +37,16 @@ public class MainActivity extends AppCompatActivity {
         database.insertar("Juan", "juanjiga", "luci1314");
         database.insertar("Mónica", "moessa13", "chusss");
         Clave cuatro = new Clave("Lucía Jiménez", "nueva", "holachiquichuss");
-
         database.insertarClave(cuatro);
         database.insertar("nombre", "usuario", "contraseña");
 
-        database.deleteClave(5);
+        //database.deleteClave(5);
 
         String[] from = new String[]{database.C_NOMBRE, database.C_USUARIO, database.C_PASSWORD};
         int[] to = new int[]{R.id.Nombre_textView, R.id.Usuario_textView,R.id.Password_textView};
 
-        cursor = database.cargarCursorClaves();
-        adapter = new SimpleCursorAdapter(this, R.layout.fila, cursor, from, to,0);
+        //cursor = database.cargarCursorClaves();
+        adapter = new SimpleCursorAdapter(this, R.layout.fila, cursor, from, to, 0);
         lista.setAdapter(adapter);
 
 
