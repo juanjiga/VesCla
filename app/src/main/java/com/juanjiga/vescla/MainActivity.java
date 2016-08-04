@@ -31,21 +31,22 @@ public class MainActivity extends AppCompatActivity {
         Clave primodato = new Clave("Juan", "juanjiga", "luci1314");
         Clave dos = new Clave("Monica", "moessa", "chusss1971");
         Clave tres = new Clave("Lucía", "lujies", "chiquichuss");
+        Clave cuatro = new Clave("Lucía Jiménez", "nueva", "holachiquichuss");
         database.insertarClave(primodato);
         database.insertarClave(dos);
         database.insertarClave(tres);
+        database.insertarClave(cuatro);
+
         database.insertar("Juan", "juanjiga", "luci1314");
         database.insertar("Mónica", "moessa13", "chusss");
-        Clave cuatro = new Clave("Lucía Jiménez", "nueva", "holachiquichuss");
-        database.insertarClave(cuatro);
-        database.insertar("nombre", "usuario", "contraseña");
+        database.insertar("nombre", "usuario", "ahora");
 
         //database.deleteClave(5);
 
-        String[] from = new String[]{database.C_NOMBRE, database.C_USUARIO, database.C_PASSWORD};
+        String[] from = new String[]{database.C_ID, database.C_NOMBRE, database.C_USUARIO, database.C_PASSWORD};
         int[] to = new int[]{R.id.Nombre_textView, R.id.Usuario_textView,R.id.Password_textView};
 
-        //cursor = database.cargarCursorClaves();
+        cursor = database.cargarCursorClaves();
         adapter = new SimpleCursorAdapter(this, R.layout.fila, cursor, from, to, 0);
         lista.setAdapter(adapter);
 
