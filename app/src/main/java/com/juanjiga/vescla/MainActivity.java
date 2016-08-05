@@ -4,14 +4,14 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-//import android.support.v4.widget.SimpleCursorAdapter;
+import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
+//import android.widget.SimpleCursorAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,13 +37,12 @@ public class MainActivity extends AppCompatActivity {
         database.insertarClave(tres);
         database.insertarClave(cuatro);
 
-        database.insertar("Juan", "juanjiga", "luci1314");
-        database.insertar("Mónica", "moessa13", "chusss");
-        database.insertar("nombre", "usuario", "ahora");
+        database.insertar("Juan...", "juanjiga", "luci1314");
+        database.insertar("Mónica...", "moessa", "chiquichuss");
+        database.insertar("Lucía...", "lujies", "bubi");
+        database.insertar("nombre...", "usuario", "ahora");
 
-        //database.deleteClave(5);
-
-        String[] from = new String[]{database.C_ID, database.C_NOMBRE, database.C_USUARIO, database.C_PASSWORD};
+        String[] from = new String[]{database.C_NOMBRE, database.C_USUARIO, database.C_PASSWORD};
         int[] to = new int[]{R.id.Nombre_textView, R.id.Usuario_textView,R.id.Password_textView};
 
         cursor = database.cargarCursorClaves();
