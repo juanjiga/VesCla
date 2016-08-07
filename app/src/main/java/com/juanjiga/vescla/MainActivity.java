@@ -7,11 +7,13 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 //import android.widget.SimpleCursorAdapter;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,9 +47,9 @@ public class MainActivity extends AppCompatActivity {
         String[] from = new String[]{database.C_NOMBRE, database.C_USUARIO, database.C_PASSWORD};
         int[] to = new int[]{R.id.Nombre_textView, R.id.Usuario_textView,R.id.Password_textView};
 
-        cursor = database.cargarCursorClaves();
-        adapter = new SimpleCursorAdapter(this, R.layout.fila, cursor, from, to, 0);
-        lista.setAdapter(adapter);
+        //cursor = database.cargarCursorClaves();
+        //adapter = new SimpleCursorAdapter(this, R.layout.fila, cursor, from, to, 0);
+        //lista.setAdapter(adapter);
 
 
 
@@ -75,16 +77,16 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.insertar_actionBar:
+                Log.d(getLocalClassName(), "crear nueva Clave");
+                return true;
+            case R.id.salir_actionBar:
+                finish();
+                return true;
+            default:
+                return false;
         }
 
-        return super.onOptionsItemSelected(item);
     }
 }
