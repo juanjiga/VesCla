@@ -11,11 +11,16 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 //import android.widget.SimpleCursorAdapter;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    private ListView listado;
+    private DataBaseAdapter dataBaseAdapter;
+    private CursorAdapter cursorAdapter;
 
     private DataBaseControl database;
     private Cursor cursor;
@@ -27,8 +32,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        database = new DataBaseControl(this);
-        lista = (ListView) findViewById(R.id.lista_listView);
+        dataBaseAdapter = new DataBaseAdapter(this);
+        listado = (ListView) findViewById(R.id.lista_listView);
+        //database = new DataBaseControl(this);
+        //lista = (ListView) findViewById(R.id.lista_listView);
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.fila, R.id.Nombre_textView,
+                new String[]{"Juan", "Mónica", "Lucía"});
+        lista.setAdapter(arrayAdapter);
 
         Clave primodato = new Clave("Juan", "juanjiga", "luci1314");
         Clave dos = new Clave("Monica", "moessa", "chusss1971");
@@ -44,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
         database.insertar("Lucía...", "lujies", "bubi");
         database.insertar("nombre...", "usuario", "ahora");
 
-        String[] from = new String[]{database.C_NOMBRE, database.C_USUARIO, database.C_PASSWORD};
-        int[] to = new int[]{R.id.Nombre_textView, R.id.Usuario_textView,R.id.Password_textView};
+        //String[] from = new String[]{database.C_NOMBRE, database.C_USUARIO, database.C_PASSWORD};
+        //int[] to = new int[]{R.id.Nombre_textView, R.id.Usuario_textView,R.id.Password_textView};
 
         //cursor = database.cargarCursorClaves();
         //adapter = new SimpleCursorAdapter(this, R.layout.fila, cursor, from, to, 0);
