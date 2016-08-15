@@ -19,44 +19,47 @@ import android.widget.ListView;
 public class MainActivity extends AppCompatActivity {
 
     private ListView listado;
-    private DataBaseAdapter dataBaseAdapter;
     private CursorAdapter cursorAdapter;
-
     private DataBaseControl database;
-    private Cursor cursor;
-    private ListView lista;
-    private SimpleCursorAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        dataBaseAdapter = new DataBaseAdapter(this);
         listado = (ListView) findViewById(R.id.lista_listView);
-        //database = new DataBaseControl(this);
-        //lista = (ListView) findViewById(R.id.lista_listView);
+        findViewById(R.id.lista_listView);
+        listado.setDivider(null);
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.fila, R.id.Nombre_textView,
-                new String[]{"Juan", "Mónica", "Lucía"});
-        lista.setAdapter(arrayAdapter);
+        database = new DataBaseControl(this);
 
-        Clave primodato = new Clave("Juan", "juanjiga", "luci1314");
-        Clave dos = new Clave("Monica", "moessa", "chusss1971");
-        Clave tres = new Clave("Lucía", "lujies", "chiquichuss");
-        Clave cuatro = new Clave("Lucía Jiménez", "nueva", "holachiquichuss");
+        Cursor cursor = database.cargarCursorClaves();
+        String[] from = new String[]{database.C_NOMBRE, database.C_USUARIO, database.C_PASSWORD};
+        int[] to = new int[]{R.id.Nombre_textView, R.id.Usuario_textView,R.id.Password_textView};
+        cursorAdapter = new CursorAdapter(MainActivity.this, R.layout.fila, cursor, from, to, 0);
+        listado.setAdapter(cursorAdapter);
+
+        //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.fila, R.id.Nombre_textView,
+               // new String[]{"Juan", "Mónica", "Lucía"});
+        //listado.setAdapter(arrayAdapter);
+
+        Clave primodato = new Clave("Juan", "juanjiga", "luci1314 1");
+        Clave dos = new Clave("Monica", "moessa", "chusss1971 2");
+        Clave tres = new Clave("Lucía", "lujies", "chiquichuss 3");
+        Clave cuatro = new Clave("Lucía Jiménez", "nueva", "holachiquichuss 4");
         database.insertarClave(primodato);
         database.insertarClave(dos);
         database.insertarClave(tres);
         database.insertarClave(cuatro);
 
-        database.insertar("Juan...", "juanjiga", "luci1314");
-        database.insertar("Mónica...", "moessa", "chiquichuss");
-        database.insertar("Lucía...", "lujies", "bubi");
-        database.insertar("nombre...", "usuario", "ahora");
+        database.insertar("Juan...", "juanjiga", "luci1314 5");
+        database.insertar("Mónica...", "moessa", "chiquichuss 6");
+        database.insertar("Lucía...", "lujies", "bubi 7");
+        database.insertar("nombre...", "usuario", "ahora 8");
 
         //String[] from = new String[]{database.C_NOMBRE, database.C_USUARIO, database.C_PASSWORD};
         //int[] to = new int[]{R.id.Nombre_textView, R.id.Usuario_textView,R.id.Password_textView};
+
 
         //cursor = database.cargarCursorClaves();
         //adapter = new SimpleCursorAdapter(this, R.layout.fila, cursor, from, to, 0);

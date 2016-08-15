@@ -1,15 +1,12 @@
 package com.juanjiga.vescla;
 
-// Clase "POJO" Plain O.... Java Object
+// Clase "POJO" Plain Old Java Object
 
 public class Clave {
     private int id;
     private String nombre;
     private String usuario;
     private String password;
-    private int imagen;
-
-    public Clave(){}
 
     public Clave(String nombre, String usuario, String password) {
         this.nombre = nombre;

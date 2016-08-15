@@ -137,7 +137,7 @@ public class DataBaseControl {
         Cursor salida;
         this.abrirpaleerDB();
         String[] columnas = new String[]{C_ID, C_NOMBRE, C_USUARIO, C_PASSWORD};
-        salida = db.query(T_CLAVES, columnas,null, null, null, null, null);
+        salida = db.query(T_CLAVES, columnas, null, null, null, null, null);
         this.cerrarDB();
         return salida;
     }

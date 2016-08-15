@@ -25,8 +25,11 @@ public class CursorAdapter extends SimpleCursorAdapter {
         ViewHolder holder = (ViewHolder) view.getTag();
         if (holder == null) {
             holder = new ViewHolder();
-            holder.colImp = cursor.getColumnIndexOrThrow(DataBaseAdapter.COL_USUARIO);
+            holder.colImp = cursor.getColumnIndexOrThrow(DataBaseControl.C_ID);
             holder.listTab = view.findViewById(R.id.Nombre_textView);
+            holder.listTab2 = view.findViewById(R.id.Usuario_textView);
+            holder.listTab3 = view.findViewById(R.id.Password_textView);
+            view.setTag(holder);
         }
 
 
@@ -37,7 +40,7 @@ public class CursorAdapter extends SimpleCursorAdapter {
         //almacena el index de la columna
         int colImp;
         //store th view
-        View listTab;
+        View listTab, listTab2, listTab3;
     }
 
 
