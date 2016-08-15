@@ -28,20 +28,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         listado = (ListView) findViewById(R.id.lista_listView);
-        findViewById(R.id.lista_listView);
-        listado.setDivider(null);
+        //findViewById(R.id.lista_listView);
+        //listado.setDivider(null);
 
         database = new DataBaseControl(this);
-
-        Cursor cursor = database.cargarCursorClaves();
-        String[] from = new String[]{database.C_NOMBRE, database.C_USUARIO, database.C_PASSWORD};
-        int[] to = new int[]{R.id.Nombre_textView, R.id.Usuario_textView,R.id.Password_textView};
-        cursorAdapter = new CursorAdapter(MainActivity.this, R.layout.fila, cursor, from, to, 0);
-        listado.setAdapter(cursorAdapter);
-
-        //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.fila, R.id.Nombre_textView,
-               // new String[]{"Juan", "Mónica", "Lucía"});
-        //listado.setAdapter(arrayAdapter);
 
         Clave primodato = new Clave("Juan", "juanjiga", "luci1314 1");
         Clave dos = new Clave("Monica", "moessa", "chusss1971 2");
@@ -57,16 +47,15 @@ public class MainActivity extends AppCompatActivity {
         database.insertar("Lucía...", "lujies", "bubi 7");
         database.insertar("nombre...", "usuario", "ahora 8");
 
-        //String[] from = new String[]{database.C_NOMBRE, database.C_USUARIO, database.C_PASSWORD};
-        //int[] to = new int[]{R.id.Nombre_textView, R.id.Usuario_textView,R.id.Password_textView};
+        Cursor cursor = database.cargarCursorClaves();
+        String[] from = new String[]{database.C_NOMBRE, database.C_USUARIO, database.C_PASSWORD};
+        int[] to = new int[]{R.id.Nombre_textView, R.id.Usuario_textView,R.id.Password_textView};
+        cursorAdapter = new CursorAdapter(this, R.layout.fila, cursor, from, to, 0);
+        listado.setAdapter(cursorAdapter);
 
-
-        //cursor = database.cargarCursorClaves();
-        //adapter = new SimpleCursorAdapter(this, R.layout.fila, cursor, from, to, 0);
-        //lista.setAdapter(adapter);
-
-
-
+        //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.fila, R.id.Nombre_textView,
+               // new String[]{"Juan", "Mónica", "Lucía"});
+        //listado.setAdapter(arrayAdapter);
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

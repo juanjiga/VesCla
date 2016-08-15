@@ -20,7 +20,7 @@ public class DataBaseControl {
     //Nombre de la tabla "claves" y nombres de los campos (columnas)
     public static final String T_CLAVES = "claves";
 
-    public static final String C_ID = "id";
+    public static final String  _id = "_id";
     public static final String C_NOMBRE = "nombre";
     public static final String C_USUARIO = "usuario";
     public static final String C_PASSWORD = "password";
@@ -28,7 +28,7 @@ public class DataBaseControl {
     //Setencia para crear la base de datos
     public static final String DATABASE_CREATE =
             "CREATE TABLE  " + T_CLAVES + "(" +
-                    C_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    _id + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     C_NOMBRE + " TEXT NOT NULL," +
                     C_USUARIO + " TEXT," +
                     C_PASSWORD + " TEXT);" ;
@@ -82,7 +82,7 @@ public class DataBaseControl {
             ArrayList lista = new ArrayList<>();
             this.abrirpaleerDB();
             Cursor cursor = db.query(T_CLAVES, null, C_NOMBRE + "=?",
-                    new String[]{C_ID, C_NOMBRE, C_USUARIO, C_PASSWORD}, null, null, null, null);
+                    new String[]{_id, C_NOMBRE, C_USUARIO, C_PASSWORD}, null, null, null, null);
             try {
                 while (cursor.moveToNext()) {
                     Clave clave = new Clave();
@@ -121,25 +121,22 @@ public class DataBaseControl {
         public void updateClave(Clave clave) {
             this.abrirpaescribirDB();
             db.update(T_CLAVES, valores(clave),
-                    C_ID + "=?", new String[]{String.valueOf(clave.getId())});
+                    _id + "=?", new String[]{String.valueOf(clave.getId())});
             db.close();
         }
 
     //DELETE   borrar
         public void deleteClave(int id) {
             this.abrirpaescribirDB();
-            db.delete(T_CLAVES, C_ID + "=?", new String[]{String.valueOf(id)});
+            db.delete(T_CLAVES, _id + "=?", new String[]{String.valueOf(id)});
             this.cerrarDB();
         }
 
     //Cursor
     public Cursor cargarCursorClaves(){
-        Cursor salida;
-        this.abrirpaleerDB();
-        String[] columnas = new String[]{C_ID, C_NOMBRE, C_USUARIO, C_PASSWORD};
-        salida = db.query(T_CLAVES, columnas, null, null, null, null, null);
-        this.cerrarDB();
-        return salida;
+        this.abrirpaescribirDB();
+        String[] columnas = new String[]{_id, C_NOMBRE, C_USUARIO, C_PASSWORD};
+        return db.query(T_CLAVES, columnas, null, null, null, null, null);
     }
 
     //clase interna Helper

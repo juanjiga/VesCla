@@ -8,6 +8,8 @@ public class Clave {
     private String usuario;
     private String password;
 
+    public Clave(){};
+
     public Clave(String nombre, String usuario, String password) {
         this.nombre = nombre;
         this.usuario = usuario;

@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 
 public class CursorAdapter extends SimpleCursorAdapter {
 
-    public CursorAdapter(Context context, int layout, Cursor c, String[] from, int[] to, int flags) {
-        super(context, layout, c, from, to, flags);
+    public CursorAdapter(Context context, int layout, Cursor cursor, String[] from, int[] to, int flags) {
+        super(context, layout, cursor, from, to, flags);
     }
 
     @Override
@@ -25,22 +25,22 @@ public class CursorAdapter extends SimpleCursorAdapter {
         ViewHolder holder = (ViewHolder) view.getTag();
         if (holder == null) {
             holder = new ViewHolder();
-            holder.colImp = cursor.getColumnIndexOrThrow(DataBaseControl.C_ID);
-            holder.listTab = view.findViewById(R.id.Nombre_textView);
-            holder.listTab2 = view.findViewById(R.id.Usuario_textView);
-            holder.listTab3 = view.findViewById(R.id.Password_textView);
+            holder.colImp = cursor.getColumnIndexOrThrow(DataBaseControl._id);
+            //holder.listTabId = view.findViewById(R.id.Id_textView);
+            holder.listTabNombre = view.findViewById(R.id.Nombre_textView);
+            holder.listTabUsuario = view.findViewById(R.id.Usuario_textView);
+            holder.listTabPassword = view.findViewById(R.id.Password_textView);
             view.setTag(holder);
         }
 
 
     }
 
-
     static class ViewHolder {
         //almacena el index de la columna
         int colImp;
         //store th view
-        View listTab, listTab2, listTab3;
+        View listTabId, listTabNombre, listTabUsuario, listTabPassword;
     }
 
 
