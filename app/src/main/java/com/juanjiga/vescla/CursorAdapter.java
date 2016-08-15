@@ -32,14 +32,12 @@ public class CursorAdapter extends SimpleCursorAdapter {
             holder.listTabPassword = view.findViewById(R.id.Password_textView);
             view.setTag(holder);
         }
-
-
     }
 
     static class ViewHolder {
         //almacena el index de la columna
         int colImp;
-        //store th view
+        //store the view
         View listTabId, listTabNombre, listTabUsuario, listTabPassword;
     }
 

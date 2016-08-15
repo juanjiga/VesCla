@@ -1,6 +1,6 @@
 package com.juanjiga.vescla;
 
-//DataBaseClaves y Constantes unidas en 
+//ADataBaseClaves y AConstantes unidas en
 //una sola Clase, equivalente a DataBaseAdapter
 
 import android.content.ContentValues;

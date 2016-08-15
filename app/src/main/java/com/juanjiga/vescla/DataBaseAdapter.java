@@ -1,7 +1,7 @@
 package com.juanjiga.vescla;
 
 // basado en Jesús Conde, equivalente
-// a las clases DataBaseClaves + Constantes
+// a las clases ADataBaseClaves + AConstantes
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -17,13 +17,13 @@ public class DataBaseAdapter {
     public static final int DB_VERSION = 1;
 
     //nombre de la tabla
-    public static final String TABLA_CLAVES = "claves";
+    public static final String T_CLAVES = "claves";
 
     //nombres de los campos (columnas)
-    public static final String ID = "id";
-    public static final String NOMBRE = "nombre";
-    public static final String COL_USUARIO = "usuario";
-    public static final String COL_PASSWORD = "password";
+    public static final String C_ID = "_id";
+    public static final String C_NOMBRE = "nombre";
+    public static final String C_USUARIO = "usuario";
+    public static final String C_PASSWORD = "password";
 
     //indices
     public static final int INDEX_ID = 0;
@@ -38,9 +38,9 @@ public class DataBaseAdapter {
 
     //sentencia SQL para crear la base de datos
     private static final String DATABASE_CREATE = "CREATE TABLE if not exist " +
-            " ( " + ID + " INTEGER PRIMARY KEY autoincrement, " + NOMBRE + " TEXT NOT NULL, " +
-            COL_USUARIO + " TEXT, " +
-            COL_PASSWORD + " TEXT );";
+            " ( " + C_ID + " INTEGER PRIMARY KEY autoincrement, " + C_NOMBRE + " TEXT NOT NULL, " +
+            C_USUARIO + " TEXT, " +
+            C_PASSWORD + " TEXT );";
 
     //constructor
     public DataBaseAdapter(Context context) {
@@ -64,24 +64,24 @@ public class DataBaseAdapter {
     //CREATE
     public void crearClave(String nombre, String usuario, String password) {
         ContentValues values = new ContentValues();
-        values.put(NOMBRE, nombre);
-        values.put(COL_USUARIO, usuario);
-        values.put(COL_PASSWORD, password);
-        db.insert(TABLA_CLAVES, null, values);
+        values.put(C_NOMBRE, nombre);
+        values.put(C_USUARIO, usuario);
+        values.put(C_PASSWORD, password);
+        db.insert(T_CLAVES, null, values);
     }
     //sobrecarga del metodo
     public long crearClave(Clave clave) {
         ContentValues values = new ContentValues();
-        values.put(NOMBRE, clave.getNombre());
-        values.put(COL_USUARIO, clave.getUsuario());
-        values.put(COL_PASSWORD, clave.getPassword());
-        return db.insert(TABLA_CLAVES, null, values);
+        values.put(C_NOMBRE, clave.getNombre());
+        values.put(C_USUARIO, clave.getUsuario());
+        values.put(C_PASSWORD, clave.getPassword());
+        return db.insert(T_CLAVES, null, values);
     }
 
     //READ
     public Clave leerClave(int id) {
-        Cursor cursor = db.query(TABLA_CLAVES, new String[]{ID, COL_USUARIO, COL_PASSWORD},
-                ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
+        Cursor cursor = db.query(T_CLAVES, new String[]{C_ID, C_USUARIO, C_PASSWORD},
+                C_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
         return new Clave(cursor.getInt(INDEX_ID), cursor.getString(INDEX_NOMBRE),
@@ -89,8 +89,8 @@ public class DataBaseAdapter {
     }
 
     public Cursor leertodoClave() {
-        Cursor cursor = db.query(TABLA_CLAVES, new String[]{ID,
-                COL_USUARIO, COL_PASSWORD}, null, null, null, null, null);
+        Cursor cursor = db.query(T_CLAVES, new String[]{C_ID,
+                C_USUARIO, C_PASSWORD}, null, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
         return cursor;
@@ -99,19 +99,19 @@ public class DataBaseAdapter {
     //UPDATE
     public void updateClave(Clave clave) {
         ContentValues values = new ContentValues();
-        values.put(NOMBRE, clave.getNombre());
-        values.put(COL_USUARIO, clave.getUsuario());
-        values.put(COL_PASSWORD, clave.getPassword());
-        db.update(TABLA_CLAVES, values, ID + "=?", new String[]{String.valueOf(clave.getId())});
+        values.put(C_NOMBRE, clave.getNombre());
+        values.put(C_USUARIO, clave.getUsuario());
+        values.put(C_PASSWORD, clave.getPassword());
+        db.update(T_CLAVES, values, C_ID + "=?", new String[]{String.valueOf(clave.getId())});
     }
 
     //DELETE
     public void deleteClaveById(int id) {
-        db.delete(TABLA_CLAVES, ID + "=?", new String[]{String.valueOf(id)});
+        db.delete(T_CLAVES, C_ID + "=?", new String[]{String.valueOf(id)});
     }
 
     public void borraTodo() {
-        db.delete(TABLA_CLAVES, null, null);
+        db.delete(T_CLAVES, null, null);
     }
 
     //clase interna Helper
@@ -127,7 +127,7 @@ public class DataBaseAdapter {
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            db.execSQL("DROP TABLE IF EXISTS " + TABLA_CLAVES);
+            db.execSQL("DROP TABLE IF EXISTS " + T_CLAVES);
             onCreate(db);
         }
     }
