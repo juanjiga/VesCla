@@ -26,7 +26,7 @@ public class CursorAdapter extends SimpleCursorAdapter {
         if (holder == null) {
             holder = new ViewHolder();
             holder.colImp = cursor.getColumnIndexOrThrow(DataBaseControl._id);
-            //holder.listTabId = view.findViewById(R.id.Id_textView);
+            holder.listTabId = view.findViewById(R.id.Id_textView);
             holder.listTabNombre = view.findViewById(R.id.Nombre_textView);
             holder.listTabUsuario = view.findViewById(R.id.Usuario_textView);
             holder.listTabPassword = view.findViewById(R.id.Password_textView);

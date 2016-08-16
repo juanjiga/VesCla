@@ -48,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
         database.insertar("nombre...", "usuario", "ahora 8");
 
         Cursor cursor = database.cargarCursorClaves();
-        String[] from = new String[]{database.C_NOMBRE, database.C_USUARIO, database.C_PASSWORD};
-        int[] to = new int[]{R.id.Nombre_textView, R.id.Usuario_textView,R.id.Password_textView};
+        String[] from = new String[]{database._id, database.C_NOMBRE, database.C_USUARIO, database.C_PASSWORD};
+        int[] to = new int[]{R.id.Id_textView, R.id.Nombre_textView, R.id.Usuario_textView,R.id.Password_textView};
         cursorAdapter = new CursorAdapter(this, R.layout.fila, cursor, from, to, 0);
         listado.setAdapter(cursorAdapter);
 
