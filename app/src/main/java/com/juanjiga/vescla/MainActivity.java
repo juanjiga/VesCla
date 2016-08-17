@@ -11,15 +11,16 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-//import android.widget.SimpleCursorAdapter;
-
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     private ListView listado;
-    private CursorAdapter cursorAdapter;
+    //private CursorAdapter cursorAdapter;
+    private SimpleCursorAdapter adapter;
     private DataBaseControl database;
 
     @Override
@@ -28,8 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         listado = (ListView) findViewById(R.id.lista_listView);
-        //findViewById(R.id.lista_listView);
-        //listado.setDivider(null);
+        listado.setDivider(null);
 
         database = new DataBaseControl(this);
 
@@ -47,28 +47,40 @@ public class MainActivity extends AppCompatActivity {
         database.insertar("Lucía...", "lujies", "bubi 7");
         database.insertar("nombre...", "usuario", "ahora 8");
 
-        Cursor cursor = database.cargarCursorClaves();
+        /*Cursor cursor = database.cargarCursorClaves();
         String[] from = new String[]{database._id, database.C_NOMBRE, database.C_USUARIO, database.C_PASSWORD};
         int[] to = new int[]{R.id.Id_textView, R.id.Nombre_textView, R.id.Usuario_textView,R.id.Password_textView};
         cursorAdapter = new CursorAdapter(this, R.layout.fila, cursor, from, to, 0);
-        listado.setAdapter(cursorAdapter);
+        listado.setAdapter(cursorAdapter);*/
+
+        Cursor cursor = database.cargarCursorClaves();
+        String[] from = new String[]{database._id, database.C_NOMBRE, database.C_USUARIO, database.C_PASSWORD};
+        int[] to = new int[]{R.id.Id_textView, R.id.Nombre_textView, R.id.Usuario_textView,R.id.Password_textView};
+        adapter = new SimpleCursorAdapter(this, R.layout.fila, cursor, from, to, 0);
+        listado.setAdapter(adapter);
 
         //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.fila, R.id.Nombre_textView,
                // new String[]{"Juan", "Mónica", "Lucía"});
         //listado.setAdapter(arrayAdapter);
 
+        listado.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(MainActivity.this, "pulsado " + position, Toast.LENGTH_SHORT).show();
+            }
+        });
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Remplazar por tu acción", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
     }
 
     @Override
