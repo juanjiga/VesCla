@@ -11,10 +11,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 //import android.widget.SimpleCursorAdapter;
 
 
@@ -52,22 +50,15 @@ public class MainActivity extends AppCompatActivity {
         Cursor cursor = database.cargarCursorClaves();
         String[] from = new String[]{database._id, database.C_NOMBRE, database.C_USUARIO, database.C_PASSWORD};
         int[] to = new int[]{R.id.Id_textView, R.id.Nombre_textView, R.id.Usuario_textView,R.id.Password_textView};
-        cursorAdapter = new CursorAdapter(MainActivity.this, R.layout.fila, cursor, from, to, 0);
+        cursorAdapter = new CursorAdapter(this, R.layout.fila, cursor, from, to, 0);
         listado.setAdapter(cursorAdapter);
 
         //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.fila, R.id.Nombre_textView,
                // new String[]{"Juan", "Mónica", "Lucía"});
         //listado.setAdapter(arrayAdapter);
 
-        listado.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(MainActivity.this, "pulsado " + position, Toast.LENGTH_SHORT).show();
-            }
-        });
 
-
-        /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -77,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 Snackbar.make(view, "Remplazar por tu acción", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });*/
+        });
     }
 
     @Override
