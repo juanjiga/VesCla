@@ -131,6 +131,11 @@ public class DataBaseControl {
             db.delete(T_CLAVES, _id + "=?", new String[]{String.valueOf(id)});
             this.cerrarDB();
         }
+        public void deleteClave(String nombre) {
+            this.abrirpaescribirDB();
+            db.delete(T_CLAVES, _id + "=?", new String[]{String.valueOf(nombre)});
+            this.cerrarDB();
+        }
 
     //Cursor
     public Cursor cargarCursorClaves(){

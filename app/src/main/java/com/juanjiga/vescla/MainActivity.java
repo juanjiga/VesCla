@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         database = new DataBaseControl(this);
 
-        Clave primodato = new Clave("Juan", "juanjiga", "luci1314 1");
+        final Clave primodato = new Clave("Juan", "juanjiga", "luci1314 1");
         Clave dos = new Clave("Monica", "moessa", "chusss1971 2");
         Clave tres = new Clave("Lucía", "lujies", "chiquichuss 3");
         database.insertarClave(primodato);
@@ -63,21 +63,22 @@ public class MainActivity extends AppCompatActivity {
         listado.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(MainActivity.this, "pulsado " + position, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, position + " " + primodato.getUsuario() + " "
+                        + primodato.getPassword(), Toast.LENGTH_SHORT).show();
             }
         });
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Remplazar por tu acción", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });*/
+        });
     }
 
     @Override
@@ -91,7 +92,10 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.insertar_actionBar:
-                Log.d(getLocalClassName(), "crear nueva Clave");
+                Toast.makeText(MainActivity.this, "Añadir", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.borrar_actionBar:
+                database.deleteClave("Juan");
                 return true;
             case R.id.salir_actionBar:
                 finish();
