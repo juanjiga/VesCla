@@ -36,16 +36,13 @@ public class MainActivity extends AppCompatActivity {
         Clave primodato = new Clave("Juan", "juanjiga", "luci1314 1");
         Clave dos = new Clave("Monica", "moessa", "chusss1971 2");
         Clave tres = new Clave("Lucía", "lujies", "chiquichuss 3");
-        Clave cuatro = new Clave("Lucía Jiménez", "nueva", "holachiquichuss 4");
         database.insertarClave(primodato);
         database.insertarClave(dos);
         database.insertarClave(tres);
-        database.insertarClave(cuatro);
-
         database.insertar("Juan...", "juanjiga", "luci1314 5");
         database.insertar("Mónica...", "moessa", "chiquichuss 6");
         database.insertar("Lucía...", "lujies", "bubi 7");
-        database.insertar("nombre...", "usuario", "ahora 8");
+
 
         /*Cursor cursor = database.cargarCursorClaves();
         String[] from = new String[]{database._id, database.C_NOMBRE, database.C_USUARIO, database.C_PASSWORD};
