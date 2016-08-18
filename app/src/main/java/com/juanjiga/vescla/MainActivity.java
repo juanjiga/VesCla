@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         database = new DataBaseControl(this);
 
-        final Clave primodato = new Clave("Juan", "juanjiga", "luci1314 1");
+        Clave primodato = new Clave("Juan", "juanjiga", "luci1314 1");
         Clave dos = new Clave("Monica", "moessa", "chusss1971 2");
         Clave tres = new Clave("Lucía", "lujies", "chiquichuss 3");
         database.insertarClave(primodato);
