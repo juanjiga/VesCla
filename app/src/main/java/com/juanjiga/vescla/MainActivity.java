@@ -19,7 +19,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private ListView listado;
-    //private CursorAdapter cursorAdapter;
+    private CursorAdapter cursorAdapter;
     private SimpleCursorAdapter adapter;
     private DataBaseControl database;
 
@@ -33,7 +33,14 @@ public class MainActivity extends AppCompatActivity {
 
         database = new DataBaseControl(this);
 
-        Clave primodato = new Clave("Juan", "juanjiga", "luci1314 1");
+        /*if (savedInstanceState == null) {
+            database.deleteAllReminders();
+             database.insertar("Juan...", "juanjiga", "luci1314 5");
+             database.insertar("Mónica...", "moessa", "chiquichuss 6");
+
+        }*/
+
+        final Clave primodato = new Clave("Juan", "juanjiga", "luci1314 1");
         Clave dos = new Clave("Monica", "moessa", "chusss1971 2");
         Clave tres = new Clave("Lucía", "lujies", "chiquichuss 3");
         database.insertarClave(primodato);
@@ -49,6 +56,12 @@ public class MainActivity extends AppCompatActivity {
         int[] to = new int[]{R.id.Id_textView, R.id.Nombre_textView, R.id.Usuario_textView,R.id.Password_textView};
         cursorAdapter = new CursorAdapter(this, R.layout.fila, cursor, from, to, 0);
         listado.setAdapter(cursorAdapter);*/
+
+        /*private int getIdFromPosition(int nC) {
+                     adapter.getItemId(nC);
+        return (int) cursorAdapter.getItemId(nC);
+        }
+        database.deleteRemindersById(getIdFromPosition(nC));*/
 
         Cursor cursor = database.cargarCursorClaves();
         String[] from = new String[]{database._id, database.C_NOMBRE, database.C_USUARIO, database.C_PASSWORD};
@@ -79,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+
     }
 
     @Override
