@@ -8,6 +8,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.v4.widget.SimpleCursorAdapter;
 
 import java.util.ArrayList;
 
@@ -142,6 +143,10 @@ public class DataBaseControl {
         this.abrirpaescribirDB();
         String[] columnas = new String[]{_id, C_NOMBRE, C_USUARIO, C_PASSWORD};
         return db.query(T_CLAVES, columnas, null, null, null, null, null);
+    }
+
+    public int getIdFromPosition(SimpleCursorAdapter adapter, int position) {
+        return (int) adapter.getItemId(position);
     }
 
     //clase interna Helper

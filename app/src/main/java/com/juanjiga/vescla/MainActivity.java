@@ -57,12 +57,9 @@ public class MainActivity extends AppCompatActivity {
         cursorAdapter = new CursorAdapter(this, R.layout.fila, cursor, from, to, 0);
         listado.setAdapter(cursorAdapter);*/
 
-        /*private int getIdFromPosition(int nC) {
-                     adapter.getItemId(nC);
-        return (int) cursorAdapter.getItemId(nC);
-        }
-        database.deleteRemindersById(getIdFromPosition(nC));*/
+        //database.deleteRemindersById(getIdFromPosition(nC));
 
+        //hacer un metodo de esto
         Cursor cursor = database.cargarCursorClaves();
         String[] from = new String[]{database._id, database.C_NOMBRE, database.C_USUARIO, database.C_PASSWORD};
         int[] to = new int[]{R.id.Id_textView, R.id.Nombre_textView, R.id.Usuario_textView,R.id.Password_textView};
@@ -76,8 +73,8 @@ public class MainActivity extends AppCompatActivity {
         listado.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(MainActivity.this, position + " " + primodato.getUsuario() + " "
-                        + primodato.getPassword(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, position + " --> " +
+                        database.getIdFromPosition(adapter, position), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -95,6 +92,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    /*private int getIdFromPosition(int nC) {
+        return (int) adapter.getItemId(nC);
+        }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
