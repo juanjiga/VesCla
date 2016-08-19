@@ -7,12 +7,10 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -29,14 +27,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         listado = (ListView) findViewById(R.id.lista_listView);
-        listado.setDivider(null);
+        //listado.setDivider(null);
 
         database = new DataBaseControl(this);
 
         /*if (savedInstanceState == null) {
-            database.deleteAllReminders();
+             database.deleteAllReminders();
              database.insertar("Juan...", "juanjiga", "luci1314 5");
              database.insertar("Mónica...", "moessa", "chiquichuss 6");
+             database.insertar("Lucía...", "lujies", "bubi 7");
 
         }*/
 
@@ -50,6 +49,10 @@ public class MainActivity extends AppCompatActivity {
         database.insertar("Mónica...", "moessa", "chiquichuss 6");
         database.insertar("Lucía...", "lujies", "bubi 7");
 
+        listadoClaves();
+
+        //database.deleteRemindersById(getIdFromPosition(nC));
+
 
         /*Cursor cursor = database.cargarCursorClaves();
         String[] from = new String[]{database._id, database.C_NOMBRE, database.C_USUARIO, database.C_PASSWORD};
@@ -57,14 +60,11 @@ public class MainActivity extends AppCompatActivity {
         cursorAdapter = new CursorAdapter(this, R.layout.fila, cursor, from, to, 0);
         listado.setAdapter(cursorAdapter);*/
 
-        //database.deleteRemindersById(getIdFromPosition(nC));
-
-        //hacer un metodo de esto
-        Cursor cursor = database.cargarCursorClaves();
+        /*Cursor cursor = database.cargarCursorClaves();
         String[] from = new String[]{database._id, database.C_NOMBRE, database.C_USUARIO, database.C_PASSWORD};
         int[] to = new int[]{R.id.Id_textView, R.id.Nombre_textView, R.id.Usuario_textView,R.id.Password_textView};
         adapter = new SimpleCursorAdapter(this, R.layout.fila, cursor, from, to, 0);
-        listado.setAdapter(adapter);
+        listado.setAdapter(adapter);*/
 
         //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.fila, R.id.Nombre_textView,
                // new String[]{"Juan", "Mónica", "Lucía"});
@@ -89,12 +89,18 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
-
     }
     /*private int getIdFromPosition(int nC) {
         return (int) adapter.getItemId(nC);
         }*/
+
+    private void listadoClaves() {
+        Cursor cursor = database.cargarCursorClaves();
+        String[] from = new String[]{database._id, database.C_NOMBRE, database.C_USUARIO, database.C_PASSWORD};
+        int[] to = new int[]{R.id.Id_textView, R.id.Nombre_textView, R.id.Usuario_textView, R.id.Password_textView};
+        adapter = new SimpleCursorAdapter(this, R.layout.fila, cursor, from, to, 0);
+        listado.setAdapter(adapter);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -110,7 +116,9 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Añadir", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.borrar_actionBar:
-                database.deleteClave("Juan");
+                database.deleteClave(15);
+                database.deleteClave(1);
+                listadoClaves();
                 return true;
             case R.id.salir_actionBar:
                 finish();

@@ -72,11 +72,12 @@ public class DataBaseControl {
         }
     public void insertar(String nombre, String usuario, String password){
             this.abrirpaescribirDB();
-        ContentValues values = new ContentValues();
-        values.put(C_NOMBRE, nombre);
-        values.put(C_USUARIO, usuario);
-        values.put(C_PASSWORD, password);
-        db.insert(T_CLAVES, null, values);
+            ContentValues values = new ContentValues();
+            values.put(C_NOMBRE, nombre);
+            values.put(C_USUARIO, usuario);
+            values.put(C_PASSWORD, password);
+            db.insert(T_CLAVES, null, values);
+            this.cerrarDB();
     }
     //READ      leer
     public ArrayList listaClaves() {
