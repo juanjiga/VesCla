@@ -87,6 +87,12 @@ public class ADataBaseClaves {
         this.cerrarDB();
     }
 
+    public void borraTodo() {
+        db.delete(AConstantes.T_CLAVES, null, null);
+    }
+
+
+
     //clase interna Helper
     private static class DataBaseHelper extends SQLiteOpenHelper {
         DataBaseHelper(Context context) {

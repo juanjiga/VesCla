@@ -1,15 +1,19 @@
 package com.juanjiga.vescla;
 
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.ActionMode;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -31,15 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         database = new DataBaseControl(this);
 
-        /*if (savedInstanceState == null) {
-             database.deleteAllReminders();
-             database.insertar("Juan...", "juanjiga", "luci1314 5");
-             database.insertar("Mónica...", "moessa", "chiquichuss 6");
-             database.insertar("Lucía...", "lujies", "bubi 7");
-
-        }*/
-
-        final Clave primodato = new Clave("Juan", "juanjiga", "luci1314 1");
+        Clave primodato = new Clave("Juan", "juanjiga", "luci1314 1");
         Clave dos = new Clave("Monica", "moessa", "chusss1971 2");
         Clave tres = new Clave("Lucía", "lujies", "chiquichuss 3");
         database.insertarClave(primodato);
@@ -49,10 +45,21 @@ public class MainActivity extends AppCompatActivity {
         database.insertar("Mónica...", "moessa", "chiquichuss 6");
         database.insertar("Lucía...", "lujies", "bubi 7");
 
+        /*if (savedInstanceState == null) {
+            database.borraTodo();
+            Clave primodato = new Clave("Juan", "juanjiga", "luci1314 1");
+            Clave dos = new Clave("Monica", "moessa", "chusss1971 2");
+            Clave tres = new Clave("Lucía", "lujies", "chiquichuss 3");
+            database.insertarClave(primodato);
+            database.insertarClave(dos);
+            database.insertarClave(tres);
+            database.insertar("Juan...", "juanjiga", "luci1314 5");
+            database.insertar("Mónica...", "moessa", "chiquichuss 6");
+            database.insertar("Lucía...", "lujies", "bubi 7");
+        }*/
+
+        //database.listadoClaves(this);
         listadoClaves();
-
-        //database.deleteRemindersById(getIdFromPosition(nC));
-
 
         /*Cursor cursor = database.cargarCursorClaves();
         String[] from = new String[]{database._id, database.C_NOMBRE, database.C_USUARIO, database.C_PASSWORD};
@@ -78,6 +85,48 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
+            listado.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+            listado.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
+                @Override
+                public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
+
+                }
+
+                @Override
+                public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+                    MenuInflater inflater = mode.getMenuInflater();
+                    inflater.inflate(R.menu.cam_menu, menu);
+                    return true;
+                }
+
+                @Override
+                public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+                    return false;
+                }
+
+                @Override
+                public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+                    switch (item.getItemId()) {
+                        case R.id.menu_item_delete_clave:
+                            for (int nC = adapter.getCount() - 1; nC <= 0; nC--) {
+                                if (listado.isItemChecked(nC)) {
+                                    database.deleteClave(database.getIdFromPosition(adapter, nC));
+                                }
+                            }
+                            mode.finish();
+                            adapter.changeCursor(database.cargarCursorClaves());
+                            return true;
+                    }
+                    return false;
+                }
+
+                @Override
+                public void onDestroyActionMode(ActionMode mode) {
+
+                }
+            });
+        //}
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -89,7 +138,10 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
     }
+
+
     /*private int getIdFromPosition(int nC) {
         return (int) adapter.getItemId(nC);
         }*/
@@ -116,8 +168,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Añadir", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.borrar_actionBar:
-                database.deleteClave(15);
-                database.deleteClave(1);
+                database.borraTodo();
                 listadoClaves();
                 return true;
             case R.id.salir_actionBar:

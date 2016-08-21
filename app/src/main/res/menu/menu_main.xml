@@ -14,12 +14,12 @@
           app:showAsAction="never" />
 
     <item android:id="@+id/borrar_actionBar"
-          android:title="Borrar"
+          android:title="@string/borrar_actionBar"
           android:orderInCategory="300"
           app:showAsAction="never" />
 
     <item android:id="@+id/salir_actionBar"
-          android:title="Salir"
+          android:title="@string/salir_actionBar"
           android:orderInCategory="400"
           app:showAsAction="never" />
 

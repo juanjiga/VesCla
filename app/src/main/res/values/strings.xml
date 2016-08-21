@@ -2,4 +2,6 @@
     <string name="app_name">VesCla</string>
     <string name="insertar_actionBar">Añadir</string>
     <string name="modificar_actionBar">Modificar</string>
+    <string name="borrar_actionBar">Borrar Todo</string>
+    <string name="salir_actionBar">Salir</string>
 </resources>
