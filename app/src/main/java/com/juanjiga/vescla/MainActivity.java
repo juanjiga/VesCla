@@ -116,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                             mode.finish();
                             adapter.changeCursor(database.cargarCursorClaves());
+                            listadoClaves();
                             return true;
                     }
                     return false;

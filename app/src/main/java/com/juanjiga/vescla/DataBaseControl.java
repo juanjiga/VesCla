@@ -140,7 +140,9 @@ public class DataBaseControl {
             this.cerrarDB();
         }
         public void borraTodo() {
+            abrirpaescribirDB();
             db.delete(AConstantes.T_CLAVES, null, null);
+            cerrarDB();
     }
 
 
