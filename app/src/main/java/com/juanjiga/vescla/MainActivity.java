@@ -84,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
                         database.getIdFromPosition(adapter, position), Toast.LENGTH_SHORT).show();
             }
         });
-
         //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
             listado.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
             listado.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
@@ -109,14 +108,13 @@ public class MainActivity extends AppCompatActivity {
                 public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
                     switch (item.getItemId()) {
                         case R.id.menu_item_delete_clave:
-                            for (int nC = adapter.getCount() - 1; nC <= 0; nC--) {
+                            for (int nC = adapter.getCount() - 1; nC >= 0; nC--) {
                                 if (listado.isItemChecked(nC)) {
                                     database.deleteClave(database.getIdFromPosition(adapter, nC));
                                 }
                             }
                             mode.finish();
                             adapter.changeCursor(database.cargarCursorClaves());
-                            listadoClaves();
                             return true;
                     }
                     return false;
@@ -135,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Remplazar por tu acción", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Remplazar por tu Acción", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
