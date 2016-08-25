@@ -1,5 +1,6 @@
 package com.juanjiga.vescla;
 
+import android.app.Dialog;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,14 +10,19 @@ import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Layout;
 import android.view.ActionMode;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,10 +37,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ActionBar actionBar = getSupportActionBar();
+        /*ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
-        actionBar.setIcon(R.mipmap.ic_launcher);
+        actionBar.setIcon(R.mipmap.ic_launcher); */
 
         listado = (ListView) findViewById(R.id.lista_listView);
         //listado.setDivider(null);
@@ -64,8 +70,10 @@ public class MainActivity extends AppCompatActivity {
             database.insertar("Lucía...", "lujies", "bubi 7");
         }*/
 
-        //database.listadoClaves(this);
+
+        //listado.setAdapter(database.listadoClaves(this));
         listadoClaves();
+
 
         /*Cursor cursor = database.cargarCursorClaves();
         String[] from = new String[]{database._id, database.C_NOMBRE, database.C_USUARIO, database.C_PASSWORD};
@@ -88,6 +96,8 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(MainActivity.this, position + " --> " +
                         database.getIdFromPosition(adapter, position), Toast.LENGTH_SHORT).show();
+                /*database.getIdFromPosition(database.listadoClaves(MainActivity.this), position),
+                        Toast.LENGTH_SHORT).show();*/
             }
         });
         //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
@@ -167,14 +177,32 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    public void fireCustomDialog(final Clave clave){
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_ACTION_BAR);
+        dialog.setContentView(R.layout.cuadro_dialogo);
+
+        TextView titulo= (TextView) dialog.findViewById(R.id.cd_titulo_textView);
+        final EditText editNombre = (EditText) dialog.findViewById(R.id.cd_nombre_editText);
+        final EditText editUsuario = (EditText) dialog.findViewById(R.id.cd_usuario_editText);
+        final EditText editPassword = (EditText) dialog.findViewById(R.id.cd_password_editText);
+        Button botonCancelar = (Button) dialog.findViewById(R.id.cd_cancelar_button);
+        Button botonGuardar = (Button) dialog.findViewById(R.id.cd_guardar_button);
+        //LinearLayout layout = .....
+        final boolean isEdit = (clave != null);
+
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.insertar_actionBar:
                 Toast.makeText(MainActivity.this, "Añadir", Toast.LENGTH_SHORT).show();
+                fireCustomDialog(null);
                 return true;
             case R.id.borrar_actionBar:
                 database.borraTodo();
+                //database.listadoClaves(this);
                 listadoClaves();
                 return true;
             case R.id.salir_actionBar:

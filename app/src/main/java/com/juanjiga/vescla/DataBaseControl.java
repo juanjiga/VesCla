@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 
@@ -153,6 +154,14 @@ public class DataBaseControl {
 
     public int getIdFromPosition(SimpleCursorAdapter adapter, int position) {
         return (int) adapter.getItemId(position);
+    }
+
+    public SimpleCursorAdapter listadoClaves(Context context) {
+        SimpleCursorAdapter adapter;
+        Cursor cursor = cargarCursorClaves();
+        String[] from = new String[]{_id,C_NOMBRE, C_USUARIO, C_PASSWORD};
+        int[] to = new int[]{R.id.Id_textView, R.id.Nombre_textView, R.id.Usuario_textView, R.id.Password_textView};
+        return adapter = new SimpleCursorAdapter(context, R.layout.fila, cursor, from, to, 0);
     }
 
     //clase interna Helper
