@@ -46,16 +46,7 @@ public class MainActivity extends AppCompatActivity {
         //listado.setDivider(null);
 
         database = new DataBaseControl(this);
-
-        Clave primodato = new Clave("Juan", "juanjiga", "luci1314 1");
-        Clave dos = new Clave("Monica", "moessa", "chusss1971 2");
-        Clave tres = new Clave("Lucía", "lujies", "chiquichuss 3");
-        database.insertarClave(primodato);
-        database.insertarClave(dos);
-        database.insertarClave(tres);
-        database.insertar("Juan...", "juanjiga", "luci1314 5");
-        database.insertar("Mónica...", "moessa", "chiquichuss 6");
-        database.insertar("Lucía...", "lujies", "bubi 7");
+        insercion();
 
         /*if (savedInstanceState == null) {
             database.borraTodo();
@@ -70,10 +61,8 @@ public class MainActivity extends AppCompatActivity {
             database.insertar("Lucía...", "lujies", "bubi 7");
         }*/
 
-
         //listado.setAdapter(database.listadoClaves(this));
         listadoClaves();
-
 
         /*Cursor cursor = database.cargarCursorClaves();
         String[] from = new String[]{database._id, database.C_NOMBRE, database.C_USUARIO, database.C_PASSWORD};
@@ -107,19 +96,16 @@ public class MainActivity extends AppCompatActivity {
                 public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
 
                 }
-
                 @Override
                 public boolean onCreateActionMode(ActionMode mode, Menu menu) {
                     MenuInflater inflater = mode.getMenuInflater();
                     inflater.inflate(R.menu.cam_menu, menu);
                     return true;
                 }
-
                 @Override
                 public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
                     return false;
                 }
-
                 @Override
                 public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
                     switch (item.getItemId()) {
@@ -135,10 +121,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                     return false;
                 }
-
                 @Override
                 public void onDestroyActionMode(ActionMode mode) {
-
                 }
             });
         //}
@@ -157,7 +141,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     /*private int getIdFromPosition(int nC) {
         return (int) adapter.getItemId(nC);
         }*/
@@ -168,6 +151,17 @@ public class MainActivity extends AppCompatActivity {
         int[] to = new int[]{R.id.Id_textView, R.id.Nombre_textView, R.id.Usuario_textView, R.id.Password_textView};
         adapter = new SimpleCursorAdapter(this, R.layout.fila, cursor, from, to, 0);
         listado.setAdapter(adapter);
+    }
+    private void insercion() {
+        Clave primodato = new Clave("Juan", "juanjiga", "luci1314 1");
+        Clave dos = new Clave("Monica", "moessa", "chusss1971 2");
+        Clave tres = new Clave("Lucía", "lujies", "chiquichuss 3");
+        database.insertarClave(primodato);
+        database.insertarClave(dos);
+        database.insertarClave(tres);
+        database.insertar("Juan...", "juanjiga", "luci1314 5");
+        database.insertar("Mónica...", "moessa", "chiquichuss 6");
+        database.insertar("Lucía...", "lujies", "bubi 7");
     }
 
     @Override
@@ -181,7 +175,6 @@ public class MainActivity extends AppCompatActivity {
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_ACTION_BAR);
         dialog.setContentView(R.layout.cuadro_dialogo);
-
         TextView titulo= (TextView) dialog.findViewById(R.id.cd_titulo_textView);
         final EditText editNombre = (EditText) dialog.findViewById(R.id.cd_nombre_editText);
         final EditText editUsuario = (EditText) dialog.findViewById(R.id.cd_usuario_editText);
@@ -190,7 +183,6 @@ public class MainActivity extends AppCompatActivity {
         Button botonGuardar = (Button) dialog.findViewById(R.id.cd_guardar_button);
         //LinearLayout layout = .....
         final boolean isEdit = (clave != null);
-
     }
 
     @Override
@@ -198,7 +190,9 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.insertar_actionBar:
                 Toast.makeText(MainActivity.this, "Añadir", Toast.LENGTH_SHORT).show();
-                fireCustomDialog(null);
+                insercion();
+                listadoClaves();
+                //fireCustomDialog(null);
                 return true;
             case R.id.borrar_actionBar:
                 database.borraTodo();
@@ -211,6 +205,5 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return false;
         }
-
     }
 }
