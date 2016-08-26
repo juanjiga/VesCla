@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         /*ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
-        actionBar.setIcon(R.mipmap.ic_launcher); */
+        actionBar.setIcon(R.mipmap.ic_launcher);*/
 
         listado = (ListView) findViewById(R.id.lista_listView);
         //listado.setDivider(null);
