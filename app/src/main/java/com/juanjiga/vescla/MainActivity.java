@@ -144,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
     private int getIdFromPosition(int nC) {
         return (int) adapter.getItemId(nC);
         }
+
     private void listadoClaves() {
         Cursor cursor = database.cargarCursorClaves();
         String[] from = new String[]{database._id, database.C_NOMBRE, database.C_USUARIO, database.C_PASSWORD};
