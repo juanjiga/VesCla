@@ -163,14 +163,6 @@ public class MainActivity extends AppCompatActivity {
         database.insertar("Mónica...", "moessa", "chiquichuss 6");
         database.insertar("Lucía...", "lujies", "bubi 7");
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
     public void fireCustomDialog(final Clave clave){
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_ACTION_BAR);
@@ -203,8 +195,7 @@ public class MainActivity extends AppCompatActivity {
                 if (isEdit) {
                     Clave claveModificada = new Clave(clave.getId(), Nombre, Usuario, Password);
                     database.updateClave(claveModificada);
-                }
-                else {
+                } else {
                     database.insertar(Nombre, Usuario, Password);
                 }
                 adapter.changeCursor(database.cargarCursorClaves());
@@ -219,6 +210,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         dialog.show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
 
     @Override
