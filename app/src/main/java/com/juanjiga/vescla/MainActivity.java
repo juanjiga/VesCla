@@ -126,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         //}
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -138,7 +139,6 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
     }
 
     /*private int getIdFromPosition(int nC) {
@@ -181,8 +181,44 @@ public class MainActivity extends AppCompatActivity {
         final EditText editPassword = (EditText) dialog.findViewById(R.id.cd_password_editText);
         Button botonCancelar = (Button) dialog.findViewById(R.id.cd_cancelar_button);
         Button botonGuardar = (Button) dialog.findViewById(R.id.cd_guardar_button);
-        //LinearLayout layout = .....
+        //LinearLayout rootLayout = .....
         final boolean isEdit = (clave != null);
+
+        if (isEdit){
+            titulo.setText("Modificar Clave");
+            editNombre.setText(clave.getNombre());
+            editUsuario.setText(clave.getUsuario());
+            editPassword.setText(clave.getPassword());
+            //rootLayout.setBackGround....
+
+        }
+        titulo.setText("Añadir Clave");
+
+        botonGuardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String Nombre = editNombre.getText().toString();
+                String Usuario = editUsuario.getText().toString();
+                String Password = editPassword.getText().toString();
+                if (isEdit) {
+                    Clave claveModificada = new Clave(clave.getId(), Nombre, Usuario, Password);
+                    database.updateClave(claveModificada);
+                }
+                else {
+                    database.insertar(Nombre, Usuario, Password);
+                }
+                adapter.changeCursor(database.cargarCursorClaves());
+                dialog.dismiss();
+            }
+        });
+
+        botonCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 
     @Override
@@ -193,6 +229,10 @@ public class MainActivity extends AppCompatActivity {
                 insercion();
                 listadoClaves();
                 //fireCustomDialog(null);
+                //fireCustomDialog(pasandole si es añadir)
+                return true;
+            case R.id.modificar_actionBar:
+                //fireCustomDialog(pasandole que es modificar)
                 return true;
             case R.id.borrar_actionBar:
                 database.borraTodo();
