@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         //listado.setDivider(null);
 
         database = new DataBaseControl(this);
-        insercion();
+        //insercion();
 
         /*if (savedInstanceState == null) {
             database.borraTodo();
@@ -83,10 +83,13 @@ public class MainActivity extends AppCompatActivity {
         listado.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(MainActivity.this, position + " --> " +
-                        database.getIdFromPosition(adapter, position), Toast.LENGTH_SHORT).show();
+                /*Toast.makeText(MainActivity.this, position + " --> " +
+                        database.getIdFromPosition(adapter, position), Toast.LENGTH_SHORT).show();*/
                 /*database.getIdFromPosition(database.listadoClaves(MainActivity.this), position),
                         Toast.LENGTH_SHORT).show();*/
+                //int nId = getIdFromPosition(position);
+                Clave clave = database.buscarClaveById(database.getIdFromPosition(adapter, position));
+                fireCustomDialog(clave);
             }
         });
         //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
@@ -135,15 +138,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 fireCustomDialog(null);
-                //Snackbar.make(view, "Remplazar por tu Acción", Snackbar.LENGTH_LONG)
-                        //.setAction("Action", null).show();
+                Snackbar.make(view, "Añade una nueva Clave", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
         });
     }
 
-    private int getIdFromPosition(int nC) {
+    /*private int getIdFromPosition(int nC) {
         return (int) adapter.getItemId(nC);
-        }
+        }*/
     private void listadoClaves() {
         Cursor cursor = database.cargarCursorClaves();
         String[] from = new String[]{database._id, database.C_NOMBRE, database.C_USUARIO, database.C_PASSWORD};
@@ -180,9 +183,9 @@ public class MainActivity extends AppCompatActivity {
             editUsuario.setText(clave.getUsuario());
             editPassword.setText(clave.getPassword());
             //rootLayout.setBackGround....
-        }
-        titulo.setText("Añadir Clave");
-
+            } else {
+                titulo.setText("Añadir Clave");
+            }
         botonGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -199,7 +202,6 @@ public class MainActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
-
         botonCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

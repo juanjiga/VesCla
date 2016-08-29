@@ -80,7 +80,8 @@ public class DataBaseControl {
             db.insert(T_CLAVES, null, values);
             this.cerrarDB();
     }
-    //READ      leer
+
+    //READ     leer
     public ArrayList listaClaves() {
             ArrayList lista = new ArrayList<>();
             this.abrirpaleerDB();
@@ -101,7 +102,18 @@ public class DataBaseControl {
             this.cerrarDB();
             return lista;
         }
-    // READ     buscar
+
+    //READ     leer
+    public Clave buscarClaveById(int id) {
+        Cursor cursor = db.query(T_CLAVES, new String[]{_id, C_USUARIO, C_PASSWORD},
+                _id + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+        return new Clave(cursor.getInt(0), cursor.getString(1),
+                cursor.getString(2), cursor.getString(3));
+    }
+
+    //READ     buscar
     public Clave buscarClave(String nombre) {
             Clave clave = new Clave();
             this.abrirpaleerDB();
