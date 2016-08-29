@@ -134,9 +134,9 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "uSAR ESTE PARA Añadir", Toast.LENGTH_SHORT).show();
-                Snackbar.make(view, "Remplazar por tu Acción", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                fireCustomDialog(null);
+                //Snackbar.make(view, "Remplazar por tu Acción", Snackbar.LENGTH_LONG)
+                        //.setAction("Action", null).show();
             }
         });
     }
@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void fireCustomDialog(final Clave clave){
         final Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_ACTION_BAR);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.cuadro_dialogo);
         TextView titulo= (TextView) dialog.findViewById(R.id.cd_titulo_textView);
         final EditText editNombre = (EditText) dialog.findViewById(R.id.cd_nombre_editText);
@@ -175,14 +175,12 @@ public class MainActivity extends AppCompatActivity {
         Button botonGuardar = (Button) dialog.findViewById(R.id.cd_guardar_button);
         //LinearLayout rootLayout = .....
         final boolean isEdit = (clave != null);
-
         if (isEdit){
             titulo.setText("Modificar Clave");
             editNombre.setText(clave.getNombre());
             editUsuario.setText(clave.getUsuario());
             editPassword.setText(clave.getPassword());
             //rootLayout.setBackGround....
-
         }
         titulo.setText("Añadir Clave");
 
@@ -224,9 +222,9 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.insertar_actionBar:
                 Toast.makeText(MainActivity.this, "Añadir", Toast.LENGTH_SHORT).show();
-                insercion();
-                listadoClaves();
-                //fireCustomDialog(null);
+                //insercion();
+                //listadoClaves();
+                fireCustomDialog(null);
                 //fireCustomDialog(pasandole si es añadir)
                 return true;
             case R.id.modificar_actionBar:

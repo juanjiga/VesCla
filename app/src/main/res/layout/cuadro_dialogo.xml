@@ -24,8 +24,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/cd_nombre_editText"
-        android:text="nombre" />
+        android:id="@+id/cd_nombre_editText" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -37,7 +36,6 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="usuario"
         android:id="@+id/cd_usuario_editText" />
 
     <TextView
@@ -50,8 +48,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/cd_password_editText"
-        android:text="password" />
+        android:id="@+id/cd_password_editText" />
 
     <LinearLayout
         android:orientation="horizontal"
