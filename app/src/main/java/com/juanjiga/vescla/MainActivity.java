@@ -144,7 +144,6 @@ public class MainActivity extends AppCompatActivity {
     private int getIdFromPosition(int nC) {
         return (int) adapter.getItemId(nC);
         }
-
     private void listadoClaves() {
         Cursor cursor = database.cargarCursorClaves();
         String[] from = new String[]{database._id, database.C_NOMBRE, database.C_USUARIO, database.C_PASSWORD};
@@ -209,14 +208,12 @@ public class MainActivity extends AppCompatActivity {
         });
         dialog.show();
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
