@@ -105,12 +105,12 @@ public class DataBaseControl {
 
     //READ     leer
     public Clave buscarClaveById(int id) {
-        Cursor cursor = db.query(T_CLAVES, new String[]{_id, C_USUARIO, C_PASSWORD},
+        Cursor cursor = db.query(T_CLAVES, new String[]{_id, C_NOMBRE, C_USUARIO, C_PASSWORD},
                 _id + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
-        return new Clave(cursor.getInt(0), cursor.getString(1),
-                cursor.getString(2), cursor.getString(3));
+        return new Clave(cursor.getInt(0), cursor.getString(1), cursor.getString(2),
+                cursor.getString(3));
     }
 
     //READ     buscar

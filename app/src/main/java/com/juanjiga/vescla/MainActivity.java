@@ -37,29 +37,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*ActionBar actionBar = getSupportActionBar();
-        actionBar.setHomeButtonEnabled(true);
-        actionBar.setDisplayShowHomeEnabled(true);
-        actionBar.setIcon(R.mipmap.ic_launcher);*/
+           /* ActionBar actionBar = getSupportActionBar();
+            actionBar.setHomeButtonEnabled(true);
+            actionBar.setDisplayShowHomeEnabled(true);
+            actionBar.setIcon(R.mipmap.ic_launcher); */
 
         listado = (ListView) findViewById(R.id.lista_listView);
         //listado.setDivider(null);
 
         database = new DataBaseControl(this);
-        //insercion();
-
-        /*if (savedInstanceState == null) {
-            database.borraTodo();
-            Clave primodato = new Clave("Juan", "juanjiga", "luci1314 1");
-            Clave dos = new Clave("Monica", "moessa", "chusss1971 2");
-            Clave tres = new Clave("Lucía", "lujies", "chiquichuss 3");
-            database.insertarClave(primodato);
-            database.insertarClave(dos);
-            database.insertarClave(tres);
-            database.insertar("Juan...", "juanjiga", "luci1314 5");
-            database.insertar("Mónica...", "moessa", "chiquichuss 6");
-            database.insertar("Lucía...", "lujies", "bubi 7");
-        }*/
+        insercion();
 
         //listado.setAdapter(database.listadoClaves(this));
         listadoClaves();
@@ -83,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
         listado.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                /*Toast.makeText(MainActivity.this, position + " --> " +
-                        database.getIdFromPosition(adapter, position), Toast.LENGTH_SHORT).show();*/
+                Toast.makeText(MainActivity.this, position + " --> " +
+                        database.getIdFromPosition(adapter, position), Toast.LENGTH_SHORT).show();
                 /*database.getIdFromPosition(database.listadoClaves(MainActivity.this), position),
                         Toast.LENGTH_SHORT).show();*/
                 //int nId = getIdFromPosition(position);
@@ -129,7 +116,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         //}
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -143,7 +129,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     /*private int getIdFromPosition(int nC) {
         return (int) adapter.getItemId(nC);
         }*/
@@ -221,15 +206,10 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.insertar_actionBar:
                 Toast.makeText(MainActivity.this, "Añadir", Toast.LENGTH_SHORT).show();
-                //insercion();
-                //listadoClaves();
                 fireCustomDialog(null);
-                //fireCustomDialog(pasandole si es añadir)
-                return true;
-            case R.id.modificar_actionBar:
-                //fireCustomDialog(pasandole que es modificar)
                 return true;
             case R.id.borrar_actionBar:
+                Toast.makeText(MainActivity.this, "Borrado", Toast.LENGTH_SHORT).show();
                 database.borraTodo();
                 //database.listadoClaves(this);
                 listadoClaves();

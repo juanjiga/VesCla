@@ -8,19 +8,14 @@
             android:orderInCategory="100"
             app:showAsAction="never" />
 
-      <item android:id="@+id/modificar_actionBar"
-            android:title="@string/modificar_actionBar"
-            android:orderInCategory="200"
-            app:showAsAction="never" />
-
       <item android:id="@+id/borrar_actionBar"
             android:title="@string/borrar_actionBar"
-            android:orderInCategory="300"
+            android:orderInCategory="200"
             app:showAsAction="never" />
 
       <item android:id="@+id/salir_actionBar"
             android:title="@string/salir_actionBar"
-            android:orderInCategory="400"
+            android:orderInCategory="300"
             app:showAsAction="never" />
 
 
