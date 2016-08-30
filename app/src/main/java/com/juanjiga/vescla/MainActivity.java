@@ -21,6 +21,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -84,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
             listado.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
                 @Override
                 public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
-
                 }
                 @Override
                 public boolean onCreateActionMode(ActionMode mode, Menu menu) {
@@ -129,13 +129,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    /*private int getIdFromPosition(int nC) {
+
+    private int getIdFromPosition(int nC) {
         return (int) adapter.getItemId(nC);
-        }*/
+        }
     private void listadoClaves() {
         Cursor cursor = database.cargarCursorClaves();
-        String[] from = new String[]{database._id, database.C_NOMBRE, database.C_USUARIO, database.C_PASSWORD};
-        int[] to = new int[]{R.id.Id_textView, R.id.Nombre_textView, R.id.Usuario_textView, R.id.Password_textView};
+        String[] from = new String[]{database._id, database.C_NOMBRE};//database.C_USUARIO, database.C_PASSWORD};
+        int[] to = new int[]{R.id.Id_textView, R.id.Nombre_textView};//R.id.Usuario_textView, R.id.Password_textView};
         adapter = new SimpleCursorAdapter(this, R.layout.fila, cursor, from, to, 0);
         listado.setAdapter(adapter);
     }
@@ -150,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
         database.insertar("Mónica...", "moessa", "chiquichuss 6");
         database.insertar("Lucía...", "lujies", "bubi 7");
     }
-    public void fireCustomDialog(final Clave clave){
+    private void fireCustomDialog(final Clave clave){
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.cuadro_dialogo);
@@ -160,14 +161,14 @@ public class MainActivity extends AppCompatActivity {
         final EditText editPassword = (EditText) dialog.findViewById(R.id.cd_password_editText);
         Button botonCancelar = (Button) dialog.findViewById(R.id.cd_cancelar_button);
         Button botonGuardar = (Button) dialog.findViewById(R.id.cd_guardar_button);
-        //LinearLayout rootLayout = .....
+        LinearLayout cuadroDialogo = (LinearLayout) dialog.findViewById(R.id.cd_cuadro_linearLayout);
         final boolean isEdit = (clave != null);
         if (isEdit){
             titulo.setText("Modificar Clave");
             editNombre.setText(clave.getNombre());
             editUsuario.setText(clave.getUsuario());
             editPassword.setText(clave.getPassword());
-            //rootLayout.setBackGround....
+            cuadroDialogo.setBackgroundColor(getResources().getColor(R.color.grisclaro));
             } else {
                 titulo.setText("Añadir Clave");
             }

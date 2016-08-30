@@ -3,6 +3,7 @@
     android:orientation="vertical"
     android:layout_width="300dp"
     android:layout_height="wrap_content"
+    android:id="@+id/cd_cuadro_linearLayout"
     android:background="#0df309">
 
     <TextView

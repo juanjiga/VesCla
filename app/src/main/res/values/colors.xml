@@ -6,6 +6,8 @@
     <color name="colorfondo">#fc8e18</color>
     <color name="grisclaro">#bababa</color>
     <color name="negro">#000000</color>
+    <color name="verde">#0df309</color>
+    <color name="amarillo">#f1ee15</color>
 
 
 </resources>
