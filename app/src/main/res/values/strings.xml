@@ -1,7 +1,13 @@
 <resources>
     <string name="app_name">VesCla</string>
     <string name="insertar_actionBar">Añadir</string>
-    <string name="modificar_actionBar">Modificar</string>
     <string name="borrar_actionBar">Borrar Todo</string>
     <string name="salir_actionBar">Salir de la app</string>
+    <string name="cd_titulo">Añadir/Modificar</string>
+    <string name="cd_nombre">NOMBRE</string>
+    <string name="cd_usuario">USUARIO</string>
+    <string name="cd_password">CONTRASEÑA</string>
+    <string name="cd_cancelar">CANCELAR</string>
+    <string name="cd_guardar">GUARDAR</string>
+
 </resources>

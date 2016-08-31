@@ -45,10 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
         listado = (ListView) findViewById(R.id.lista_listView);
         //listado.setDivider(null);
-
         database = new DataBaseControl(this);
-        insercion();
-
+        //insercion();
         //listado.setAdapter(database.listadoClaves(this));
         listadoClaves();
 
