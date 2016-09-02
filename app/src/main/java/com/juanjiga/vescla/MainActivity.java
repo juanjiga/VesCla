@@ -133,9 +133,11 @@ public class MainActivity extends AppCompatActivity {
         }
     private void listadoClaves() {
         Cursor cursor = database.cargarCursorClaves();
-        String[] from = new String[]{database._id, database.C_NOMBRE};//database.C_USUARIO, database.C_PASSWORD};
-        int[] to = new int[]{R.id.Id_textView, R.id.Nombre_textView};//R.id.Usuario_textView, R.id.Password_textView};
-        adapter = new SimpleCursorAdapter(this, R.layout.fila, cursor, from, to, 0);
+        //String[] from = new String[]{database._id, database.C_NOMBRE, database.C_USUARIO, database.C_PASSWORD};
+        //int[] to = new int[]{R.id.Id_textView, R.id.Nombre_textView, R.id.Usuario_textView, R.id.Password_textView};
+        String[] from = new String[]{database.C_NOMBRE};
+        int[] to = new int[]{R.id.Nombre_textView};
+        adapter = new SimpleCursorAdapter(this, R.layout.filita, cursor, from, to, 0);
         listado.setAdapter(adapter);
     }
     private void insercion() {
