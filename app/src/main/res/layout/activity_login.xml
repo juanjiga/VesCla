@@ -7,7 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.juanjiga.vescla.ActivityLogin">
+    tools:context="com.juanjiga.vescla.ActivityLogin"
+    android:background="#b6a5a5">
 
     <TextView
         android:layout_width="wrap_content"
@@ -111,7 +112,8 @@
             android:text="Borrar"
             android:id="@+id/buttonBorrar"
             android:layout_row="4"
-            android:layout_column="0" />
+            android:layout_column="0"
+            android:background="@color/rojo" />
 
         <Button
             android:layout_width="wrap_content"
@@ -119,7 +121,8 @@
             android:text="Entrar"
             android:id="@+id/buttonEntrar"
             android:layout_row="4"
-            android:layout_column="2" />
+            android:layout_column="2"
+            android:background="@color/verde" />
 
     </GridLayout>
 
