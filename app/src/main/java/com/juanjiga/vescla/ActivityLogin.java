@@ -10,14 +10,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 public class ActivityLogin extends AppCompatActivity implements OnClickListener {
 
-    private String clave = "";
+    private String pin = "";
     private TextView pass;
     private Button[] boton = new Button[10];
     private Button borrar, entrar;
-    private int pulsaciones = 0;
+    private int digitos = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,19 +46,18 @@ public class ActivityLogin extends AppCompatActivity implements OnClickListener 
         borrar.setOnClickListener(this);
         entrar.setOnClickListener(this);
         entrar.setVisibility(View.INVISIBLE);
-
     }
 
     @Override
     public void onClick(View v) {
-        pulsaciones++;
-        if (pulsaciones == 4)
+        digitos++;
+        if (digitos == 4)
             entrar.setVisibility(View.VISIBLE);
-        if (pulsaciones < 5) {
+        if (digitos < 5) {
             for (int i = 0; i < 10; i++) {
                 if (v == boton[i]) {
-                    clave = clave + i;
-                    pass.setText(clave);
+                    pin = pin + i;
+                    pass.setText(pin);
                 }
             }
         }
@@ -67,7 +65,8 @@ public class ActivityLogin extends AppCompatActivity implements OnClickListener 
             resetear();
         }
         if (v == entrar){
-            if (clave.equals("1314")) {
+            if (pin.equals("1314")) {
+                resetear();
                 Toast.makeText(getBaseContext(), "Correcto", Toast.LENGTH_SHORT).show();
                 Intent nueva = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(nueva);
@@ -80,9 +79,9 @@ public class ActivityLogin extends AppCompatActivity implements OnClickListener 
     }
 
     public void resetear(){
-        pulsaciones = 0;
-        clave = "";
-        pass.setText(clave);
+        digitos = 0;
+        pin = "";
+        pass.setText("0 0 0 0");
         entrar.setVisibility(View.INVISIBLE);
     }
 
