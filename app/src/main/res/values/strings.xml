@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">VesCla</string>
+    <string name="app_name"> VesCla</string>
     <string name="insertar_actionBar">Añadir</string>
     <string name="borrar_actionBar">Borrar Todo</string>
     <string name="salir_actionBar">Salir de la app</string>

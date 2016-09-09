@@ -38,10 +38,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-           /* ActionBar actionBar = getSupportActionBar();
+          /*ActionBar actionBar = getSupportActionBar();
             actionBar.setHomeButtonEnabled(true);
             actionBar.setDisplayShowHomeEnabled(true);
-            actionBar.setIcon(R.mipmap.ic_launcher); */
+            actionBar.setIcon(R.mipmap.ic_launcher);*/
 
         listado = (ListView) findViewById(R.id.lista_listView);
         //listado.setDivider(null);
@@ -216,7 +216,8 @@ public class MainActivity extends AppCompatActivity {
                 listadoClaves();
                 return true;
             case R.id.salir_actionBar:
-                finish();
+                System.exit(RESULT_OK);
+                //finish();
                 return true;
             default:
                 return false;
