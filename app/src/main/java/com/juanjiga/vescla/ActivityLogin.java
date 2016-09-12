@@ -1,6 +1,8 @@
 package com.juanjiga.vescla;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -46,6 +48,9 @@ public class ActivityLogin extends AppCompatActivity implements OnClickListener 
         borrar.setOnClickListener(this);
         entrar.setOnClickListener(this);
         entrar.setVisibility(View.INVISIBLE);
+
+        SharedPreferences leerPin = getSharedPreferences("archivo", Context.MODE_PRIVATE);
+        pass.setText(leerPin.getString("dato2", "HOLA"));
     }
 
     @Override
@@ -66,8 +71,15 @@ public class ActivityLogin extends AppCompatActivity implements OnClickListener 
         }
         if (v == entrar){
             if (pin.equals("1314")) {
+
+                SharedPreferences preferencias = getSharedPreferences("archivo",Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferencias.edit();
+                editor.putString("dato", pass.getText().toString());
+                editor.putString("dato2", pin + " Hola");
+                editor.commit();
+
                 resetear();
-                Toast.makeText(getBaseContext(), "Correcto", Toast.LENGTH_SHORT).show();
+
                 Intent nueva = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(nueva);
             }
