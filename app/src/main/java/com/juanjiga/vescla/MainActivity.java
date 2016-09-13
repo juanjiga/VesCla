@@ -1,6 +1,9 @@
 package com.juanjiga.vescla;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Layout;
 import android.view.ActionMode;
+import android.view.KeyEvent;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.Menu;
@@ -210,17 +214,65 @@ public class MainActivity extends AppCompatActivity {
                 fireCustomDialog(null);
                 return true;
             case R.id.borrar_actionBar:
-                Toast.makeText(MainActivity.this, "Borrado", Toast.LENGTH_SHORT).show();
-                database.borraTodo();
+                seguroBorrarTodo();
+                //database.borraTodo();
                 //database.listadoClaves(this);
                 listadoClaves();
                 return true;
             case R.id.salir_actionBar:
-                System.exit(RESULT_OK);
+                salirApp();
+                //System.exit(RESULT_OK);
                 //finish();
                 return true;
             default:
                 return false;
         }
+    }
+    public void seguroBorrarTodo(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("¡ ATENCIÓN !");
+        builder.setMessage("¿ Borrar TODO ?");
+        builder.setCancelable(true);
+        builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface builder, int id) {
+                Toast.makeText(MainActivity.this, "Borrado", Toast.LENGTH_SHORT).show();
+                database.borraTodo();
+                    }
+                });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface builder, int id) {
+                builder.cancel();
+                    }
+                });
+        builder.show();
+    }
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                builder.setTitle("¡ ATENCIÓN !");
+                builder.setMessage("¿ Salir de VesCla ?");
+                builder.setCancelable(true);
+                builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface builder, int id) {
+                        salirApp();
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface builder, int id) {
+                        builder.cancel();
+                    }
+                });
+                builder.show();
+                break;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+    public void salirApp(){
+        finish();
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }

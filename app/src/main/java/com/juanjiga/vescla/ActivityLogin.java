@@ -15,6 +15,7 @@ import android.widget.Toast;
 public class ActivityLogin extends AppCompatActivity implements OnClickListener {
 
     private String pin = "";
+    private String pinAlmacenado;
     private TextView pass;
     private Button[] boton = new Button[10];
     private Button borrar, entrar;
@@ -49,8 +50,9 @@ public class ActivityLogin extends AppCompatActivity implements OnClickListener 
         entrar.setOnClickListener(this);
         entrar.setVisibility(View.INVISIBLE);
 
-        SharedPreferences leerPin = getSharedPreferences("archivo", Context.MODE_PRIVATE);
-        pass.setText(leerPin.getString("dato2", "HOLA"));
+        SharedPreferences leerPinAlmacenado = getSharedPreferences("archivo", Context.MODE_PRIVATE);
+        pass.setText(leerPinAlmacenado.getString("dato", ""));
+        pinAlmacenado = leerPinAlmacenado.getString("dato", null);
     }
 
     @Override
@@ -70,15 +72,15 @@ public class ActivityLogin extends AppCompatActivity implements OnClickListener 
             resetear();
         }
         if (v == entrar){
-            if (pin.equals("1314")) {
+            if (pin.equals("1314")) { //pinAlmacenado)) {
 
-                SharedPreferences preferencias = getSharedPreferences("archivo",Context.MODE_PRIVATE);
+                /*SharedPreferences preferencias = getSharedPreferences("archivo",Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferencias.edit();
                 editor.putString("dato", pass.getText().toString());
                 editor.putString("dato2", pin + " Hola");
                 editor.commit();
 
-                resetear();
+                resetear();*/
 
                 Intent nueva = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(nueva);
