@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 public class ActivityLogin extends AppCompatActivity implements OnClickListener {
 
-    private String pin = "";
+    private String pinIntroducido = "";
     private String pinAlmacenado;
     private TextView pass;
     private Button[] boton = new Button[10];
@@ -51,7 +51,7 @@ public class ActivityLogin extends AppCompatActivity implements OnClickListener 
         entrar.setVisibility(View.INVISIBLE);
 
         SharedPreferences leerPinAlmacenado = getSharedPreferences("archivo", Context.MODE_PRIVATE);
-        pass.setText(leerPinAlmacenado.getString("dato", ""));
+        //pass.setText(leerPinAlmacenado.getString("dato", ""));
         pinAlmacenado = leerPinAlmacenado.getString("dato", null);
     }
 
@@ -63,8 +63,8 @@ public class ActivityLogin extends AppCompatActivity implements OnClickListener 
         if (digitos < 5) {
             for (int i = 0; i < 10; i++) {
                 if (v == boton[i]) {
-                    pin = pin + i;
-                    pass.setText(pin);
+                    pinIntroducido = pinIntroducido + i;
+                    pass.setText(pinIntroducido);
                 }
             }
         }
@@ -72,12 +72,12 @@ public class ActivityLogin extends AppCompatActivity implements OnClickListener 
             resetear();
         }
         if (v == entrar){
-            if (pin.equals("1314")) { //pinAlmacenado)) {
+            if (pinIntroducido.equals("1314")) { //pinAlmacenado)) {
 
                 /*SharedPreferences preferencias = getSharedPreferences("archivo",Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferencias.edit();
                 editor.putString("dato", pass.getText().toString());
-                editor.putString("dato2", pin + " Hola");
+                editor.putString("dato2", pinIntroducido + " Hola");
                 editor.commit();
 
                 resetear();*/
@@ -94,7 +94,7 @@ public class ActivityLogin extends AppCompatActivity implements OnClickListener 
 
     public void resetear(){
         digitos = 0;
-        pin = "";
+        pinIntroducido = "";
         pass.setText("0 0 0 0");
         entrar.setVisibility(View.INVISIBLE);
     }

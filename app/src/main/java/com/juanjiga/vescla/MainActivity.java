@@ -215,9 +215,9 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.borrar_actionBar:
                 seguroBorrarTodo();
-                //database.borraTodo();
+
+                //database.borrarTodo();
                 //database.listadoClaves(this);
-                listadoClaves();
                 return true;
             case R.id.salir_actionBar:
                 salirApp();
@@ -235,8 +235,9 @@ public class MainActivity extends AppCompatActivity {
         builder.setCancelable(true);
         builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface builder, int id) {
-                Toast.makeText(MainActivity.this, "Borrado", Toast.LENGTH_SHORT).show();
-                database.borraTodo();
+                Toast.makeText(MainActivity.this, "Borrado Total", Toast.LENGTH_SHORT).show();
+                database.borrarTodo();
+                listadoClaves();
                     }
                 });
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {

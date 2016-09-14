@@ -151,9 +151,9 @@ public class DataBaseControl {
             db.delete(T_CLAVES, _id + "=?", new String[]{String.valueOf(nombre)});
             this.cerrarDB();
         }
-        public void borraTodo() {
+        public void borrarTodo() {
             abrirpaescribirDB();
-            db.delete(AConstantes.T_CLAVES, null, null);
+            db.delete(T_CLAVES, null, null);
             cerrarDB();
     }
 
