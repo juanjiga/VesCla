@@ -1,6 +1,8 @@
 package com.juanjiga.vescla;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.ActionBar;
@@ -51,8 +53,26 @@ public class ActivityLogin extends AppCompatActivity implements OnClickListener 
         entrar.setVisibility(View.INVISIBLE);
 
         SharedPreferences leerPinAlmacenado = getSharedPreferences("archivo", Context.MODE_PRIVATE);
-        //pass.setText(leerPinAlmacenado.getString("dato", ""));
-        pinAlmacenado = leerPinAlmacenado.getString("dato", null);
+        pinAlmacenado = leerPinAlmacenado.getString("dato", "");
+        pass.setText(leerPinAlmacenado.getString("dato2", ""));
+
+        if (pinAlmacenado.equals("")) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("no hay pin");
+            builder.setMessage("¿crear pin?");
+            builder.setCancelable(true);
+            builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface builder, int id) {
+                   builder.cancel();
+                }
+            });
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface builder, int id) {
+                    builder.cancel();
+                }
+            });
+            builder.show();
+        }
     }
 
     @Override
@@ -68,19 +88,18 @@ public class ActivityLogin extends AppCompatActivity implements OnClickListener 
                 }
             }
         }
-        if (v== borrar){
+        if (v == borrar){
             resetear();
         }
         if (v == entrar){
-            if (pinIntroducido.equals("1314")) { //pinAlmacenado)) {
-
-                /*SharedPreferences preferencias = getSharedPreferences("archivo",Context.MODE_PRIVATE);
+            if (pinIntroducido.equals("9999")){ //pinAlmacenado)) {
+                SharedPreferences preferencias = getSharedPreferences("archivo",Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferencias.edit();
-                editor.putString("dato", pass.getText().toString());
-                editor.putString("dato2", pinIntroducido + " Hola");
+                editor.putString("dato", pinIntroducido);
+                editor.putString("dato2", pass.getText().toString());
                 editor.commit();
 
-                resetear();*/
+                resetear();
 
                 Intent nueva = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(nueva);

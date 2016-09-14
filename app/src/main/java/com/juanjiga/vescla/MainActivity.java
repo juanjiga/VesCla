@@ -33,7 +33,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private ListView listado;
-    private CursorAdapter cursorAdapter;
+    //private CursorAdapter cursorAdapter;
     private SimpleCursorAdapter adapter;
     private DataBaseControl database;
 
@@ -131,7 +131,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     private int getIdFromPosition(int nC) {
         return (int) adapter.getItemId(nC);
         }
@@ -215,7 +214,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.borrar_actionBar:
                 seguroBorrarTodo();
-
                 //database.borrarTodo();
                 //database.listadoClaves(this);
                 return true;
