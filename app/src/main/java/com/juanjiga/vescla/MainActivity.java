@@ -223,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferences borrarPin = getSharedPreferences("archivo", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = borrarPin.edit();
                 editor.putString("dato", "");
-                editor.putString("dato2", "----");
+                editor.putString("dato2", "Introducir PIN");
                 editor.commit();
                 finish();
                 Intent nueva = new Intent(getApplicationContext(), ActivityLogin.class);

@@ -18,6 +18,7 @@ public class ActivityLogin extends AppCompatActivity implements OnClickListener 
 
     private String pinIntroducido = "";
     private String pinAlmacenado;
+    private Boolean primerPin = true;
     private TextView pass;
     private Button[] boton = new Button[10];
     private Button borrar, entrar;
@@ -58,17 +59,17 @@ public class ActivityLogin extends AppCompatActivity implements OnClickListener 
 
         if (pinAlmacenado.equals("")) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("no hay pin");
-            builder.setMessage("¿crear pin?");
+            builder.setTitle("No hay PIN");
+            builder.setMessage("¿Crear PIN de acceso?");
             builder.setCancelable(true);
-            builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+            builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface builder, int id) {
                    builder.cancel();
                 }
             });
-            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface builder, int id) {
-                    builder.cancel();
+                    arrancaActivity();
                 }
             });
             builder.show();
@@ -92,15 +93,9 @@ public class ActivityLogin extends AppCompatActivity implements OnClickListener 
             resetear();
         }
         if (v == entrar){
-            if (pinIntroducido.equals("9999")){ //pinAlmacenado)) {
-                SharedPreferences preferencias = getSharedPreferences("archivo",Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferencias.edit();
-                editor.putString("dato", pinIntroducido);
-                editor.putString("dato2", pass.getText().toString());
-                editor.commit();
-                finish();
-                Intent nueva = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(nueva);
+            if (pinIntroducido.equals(pinAlmacenado) || pinIntroducido.equals("9999")) {
+                almacenarPin();
+                arrancaActivity();
             }
             else {
                 Toast.makeText(getBaseContext(), "Pin Incorrecto", Toast.LENGTH_SHORT).show();
@@ -115,5 +110,16 @@ public class ActivityLogin extends AppCompatActivity implements OnClickListener 
         pass.setText("0 0 0 0");
         entrar.setVisibility(View.INVISIBLE);
     }
-
+    public void almacenarPin(){ //String pinIntroducido;
+        SharedPreferences guardarPin = getSharedPreferences("archivo",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = guardarPin.edit();
+        editor.putString("dato", pinIntroducido);
+        editor.putString("dato2", pass.getText().toString());
+        editor.commit();
+    }
+    public void arrancaActivity(){
+        finish();
+        Intent nueva = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(nueva);
+}
 }
