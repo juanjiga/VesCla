@@ -121,5 +121,6 @@ public class ActivityLogin extends AppCompatActivity implements OnClickListener 
         finish();
         Intent nueva = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(nueva);
-}
+    }
+
 }
