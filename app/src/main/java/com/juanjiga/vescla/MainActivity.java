@@ -2,8 +2,10 @@ package com.juanjiga.vescla;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
@@ -216,6 +218,16 @@ public class MainActivity extends AppCompatActivity {
                 seguroBorrarTodo();
                 //database.borrarTodo();
                 //database.listadoClaves(this);
+                return true;
+            case R.id.cambiarpin_actionBar:
+                SharedPreferences borrarPin = getSharedPreferences("archivo", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = borrarPin.edit();
+                editor.putString("dato", "");
+                editor.putString("dato2", "----");
+                editor.commit();
+                finish();
+                Intent nueva = new Intent(getApplicationContext(), ActivityLogin.class);
+                startActivity(nueva);
                 return true;
             case R.id.salir_actionBar:
                 salirApp();

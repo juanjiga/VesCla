@@ -13,6 +13,11 @@
             android:orderInCategory="200"
             app:showAsAction="never" />
 
+      <item android:id="@+id/cambiarpin_actionBar"
+            android:title="@string/cambiarpin_actionBar"
+            android:orderInCategory="200"
+            app:showAsAction="never" />
+
       <item android:id="@+id/salir_actionBar"
             android:title="@string/salir_actionBar"
             android:orderInCategory="300"

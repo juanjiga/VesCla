@@ -98,9 +98,7 @@ public class ActivityLogin extends AppCompatActivity implements OnClickListener 
                 editor.putString("dato", pinIntroducido);
                 editor.putString("dato2", pass.getText().toString());
                 editor.commit();
-
-                resetear();
-
+                finish();
                 Intent nueva = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(nueva);
             }
