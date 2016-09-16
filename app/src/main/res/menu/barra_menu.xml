@@ -4,7 +4,6 @@
           android:icon="@android:drawable/ic_menu_delete"
           android:title="borrar" />
     <item android:id="@+id/menu_item_share_clave"
-        android:icon="@android:drawable/ic_menu_share"
-        android:title="compartir" />
-
+          android:icon="@android:drawable/ic_menu_share"
+          android:title="compartir" />
 </menu>

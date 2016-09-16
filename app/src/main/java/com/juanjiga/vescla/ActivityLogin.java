@@ -53,10 +53,7 @@ public class ActivityLogin extends AppCompatActivity implements OnClickListener 
         entrar.setOnClickListener(this);
         entrar.setVisibility(View.INVISIBLE);
 
-        SharedPreferences leerPinAlmacenado = getSharedPreferences("archivo", Context.MODE_PRIVATE);
-        pinAlmacenado = leerPinAlmacenado.getString("pinAlmacenado", "");
-        pass.setText(leerPinAlmacenado.getString("texto", "--------"));
-        sinPin = leerPinAlmacenado.getBoolean("sinPin", true);
+        leerPin();
 
         if (pinAlmacenado.equals("")) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -115,6 +112,12 @@ public class ActivityLogin extends AppCompatActivity implements OnClickListener 
         pinIntroducido = "";
         pass.setText("Nuevo Intento");
         entrar.setVisibility(View.INVISIBLE);
+    }
+    public void leerPin(){
+        SharedPreferences leerPinAlmacenado = getSharedPreferences("archivo", Context.MODE_PRIVATE);
+        pinAlmacenado = leerPinAlmacenado.getString("pinAlmacenado", "");
+        pass.setText(leerPinAlmacenado.getString("texto", "--------"));
+        sinPin = leerPinAlmacenado.getBoolean("sinPin", true);
     }
     public void almacenarPin(){ //String pinIntroducido;
         SharedPreferences guardarPin = getSharedPreferences("archivo",Context.MODE_PRIVATE);
