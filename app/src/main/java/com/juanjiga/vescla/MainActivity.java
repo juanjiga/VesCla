@@ -222,8 +222,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.cambiarpin_actionBar:
                 SharedPreferences borrarPin = getSharedPreferences("archivo", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = borrarPin.edit();
-                editor.putString("dato", "");
-                editor.putString("dato2", "Introducir PIN");
+                editor.putString("pinAlmacenado", "");
+                editor.putString("texto", "NUEVO PIN");
+                editor.putBoolean("sinPin", true);
                 editor.commit();
                 finish();
                 Intent nueva = new Intent(getApplicationContext(), ActivityLogin.class);

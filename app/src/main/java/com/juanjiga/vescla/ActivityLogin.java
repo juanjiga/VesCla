@@ -18,7 +18,7 @@ public class ActivityLogin extends AppCompatActivity implements OnClickListener 
 
     private String pinIntroducido = "";
     private String pinAlmacenado;
-    private Boolean primerPin = true;
+    private Boolean sinPin;
     private TextView pass;
     private Button[] boton = new Button[10];
     private Button borrar, entrar;
@@ -54,12 +54,13 @@ public class ActivityLogin extends AppCompatActivity implements OnClickListener 
         entrar.setVisibility(View.INVISIBLE);
 
         SharedPreferences leerPinAlmacenado = getSharedPreferences("archivo", Context.MODE_PRIVATE);
-        pinAlmacenado = leerPinAlmacenado.getString("dato", "");
-        pass.setText(leerPinAlmacenado.getString("dato2", ""));
+        pinAlmacenado = leerPinAlmacenado.getString("pinAlmacenado", "");
+        pass.setText(leerPinAlmacenado.getString("texto", "--------"));
+        sinPin = leerPinAlmacenado.getBoolean("sinPin", true);
 
         if (pinAlmacenado.equals("")) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("No hay PIN");
+            builder.setTitle("No hay PIN de seguridad");
             builder.setMessage("¿Crear PIN de acceso?");
             builder.setCancelable(true);
             builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
@@ -69,13 +70,14 @@ public class ActivityLogin extends AppCompatActivity implements OnClickListener 
             });
             builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface builder, int id) {
+                    Toast.makeText(getBaseContext(), "ATENCION VesCla sin Codigo de Seguridad",
+                            Toast.LENGTH_SHORT).show();
                     arrancaActivity();
                 }
             });
             builder.show();
         }
     }
-
     @Override
     public void onClick(View v) {
         digitos++;
@@ -93,28 +95,34 @@ public class ActivityLogin extends AppCompatActivity implements OnClickListener 
             resetear();
         }
         if (v == entrar){
-            if (pinIntroducido.equals(pinAlmacenado) || pinIntroducido.equals("9999")) {
+            if (sinPin){
                 almacenarPin();
+                Toast.makeText(getBaseContext(), " Nuevo PIN < " + pinIntroducido +" > Guardado",
+                        Toast.LENGTH_SHORT).show();
+                arrancaActivity();
+            }
+            if (pinIntroducido.equals(pinAlmacenado) || pinIntroducido.equals("9999")) {
+                Toast.makeText(getBaseContext(), " < HOLA >", Toast.LENGTH_SHORT).show();
                 arrancaActivity();
             }
             else {
-                Toast.makeText(getBaseContext(), "Pin Incorrecto", Toast.LENGTH_SHORT).show();
                 resetear();
             }
         }
     }
-
     public void resetear(){
         digitos = 0;
         pinIntroducido = "";
-        pass.setText("0 0 0 0");
+        pass.setText("Nuevo Intento");
         entrar.setVisibility(View.INVISIBLE);
     }
     public void almacenarPin(){ //String pinIntroducido;
         SharedPreferences guardarPin = getSharedPreferences("archivo",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = guardarPin.edit();
-        editor.putString("dato", pinIntroducido);
-        editor.putString("dato2", pass.getText().toString());
+        editor.putString("pinAlmacenado", pinIntroducido);
+        editor.putString("texto", "Introducir PIN");
+        //editor.putString("texto", pass.getText().toString());
+        editor.putBoolean("sinPin", false);
         editor.commit();
     }
     public void arrancaActivity(){
