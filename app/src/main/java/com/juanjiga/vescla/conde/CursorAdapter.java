@@ -1,10 +1,13 @@
-package com.juanjiga.vescla;
+package com.juanjiga.vescla.conde;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.juanjiga.vescla.DataBaseControl;
+import com.juanjiga.vescla.R;
 
 
 public class CursorAdapter extends SimpleCursorAdapter {

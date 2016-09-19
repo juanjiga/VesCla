@@ -1,4 +1,4 @@
-package com.juanjiga.vescla;
+package com.juanjiga.vescla.conde;
 
 // basado en Jesús Conde, equivalente
 // a las clases ADataBaseClaves + AConstantes
@@ -9,6 +9,8 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.juanjiga.vescla.Clave;
 
 public class DataBaseAdapter {
 

@@ -1,4 +1,4 @@
-package com.juanjiga.vescla;
+package com.juanjiga.vescla.alonso;
 
 // basado en Codigo Alonso
 // para funcionar junto a la clase ADataBaseClaves

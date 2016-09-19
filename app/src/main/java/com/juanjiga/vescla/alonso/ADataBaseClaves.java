@@ -1,4 +1,4 @@
-package com.juanjiga.vescla;
+package com.juanjiga.vescla.alonso;
 
 // basado en Codigo Alonso, esta clase + AConstantes
 // es equivalente a la clase DataBaseAdapter
@@ -8,6 +8,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.juanjiga.vescla.Clave;
+import com.juanjiga.vescla.alonso.AConstantes;
 
 public class ADataBaseClaves {
 
