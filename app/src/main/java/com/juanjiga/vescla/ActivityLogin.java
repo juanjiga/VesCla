@@ -67,7 +67,7 @@ public class ActivityLogin extends AppCompatActivity implements OnClickListener 
             });
             builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface builder, int id) {
-                    Toast.makeText(getBaseContext(), "ATENCION VesCla sin Codigo de Seguridad",
+                    Toast.makeText(getBaseContext(), "ATENCION VesCla sin PIN de Seguridad",
                             Toast.LENGTH_SHORT).show();
                     arrancaActivity();
                 }
