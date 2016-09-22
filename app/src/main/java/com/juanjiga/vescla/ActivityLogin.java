@@ -110,7 +110,7 @@ public class ActivityLogin extends AppCompatActivity implements OnClickListener 
     public void resetear(){
         digitos = 0;
         pinIntroducido = "";
-        pass.setText("Nuevo Intento");
+        pass.setText("Intentalo de nuevo");
         entrar.setVisibility(View.INVISIBLE);
     }
     public void leerPin(){
