@@ -116,7 +116,7 @@ public class ActivityLogin extends AppCompatActivity implements OnClickListener 
     public void leerPin(){
         SharedPreferences leerPinAlmacenado = getSharedPreferences("archivo", Context.MODE_PRIVATE);
         pinAlmacenado = leerPinAlmacenado.getString("pinAlmacenado", "");
-        pass.setText(leerPinAlmacenado.getString("texto", "--------"));
+        pass.setText(leerPinAlmacenado.getString("texto", "*******"));
         sinPin = leerPinAlmacenado.getBoolean("sinPin", true);
     }
     public void almacenarPin(){ //String pinIntroducido;
