@@ -208,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.insertar_actionBar:
-                Toast.makeText(MainActivity.this, "Añadir", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Añadir nueva Clave", Toast.LENGTH_SHORT).show();
                 fireCustomDialog(null);
                 return true;
             case R.id.borrar_actionBar:
