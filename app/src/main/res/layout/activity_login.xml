@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.juanjiga.vescla.ActivityLogin"
-    android:background="#b6a5a5">
+    android:background="@drawable/fondo_login">
 
     <TextView
         android:layout_width="wrap_content"
