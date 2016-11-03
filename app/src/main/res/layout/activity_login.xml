@@ -115,7 +115,7 @@
             android:id="@+id/buttonBorrar"
             android:layout_row="4"
             android:layout_column="0"
-            android:background="@color/rojo" />
+            android:background="@drawable/boton_rojo" />
 
         <Button
             android:layout_width="wrap_content"
@@ -124,7 +124,7 @@
             android:id="@+id/buttonEntrar"
             android:layout_row="4"
             android:layout_column="2"
-            android:background="@color/verde" />
+            android:background="@drawable/boton_verde" />
 
     </GridLayout>
 
